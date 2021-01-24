@@ -1,49 +1,5 @@
 PennController . ResetPrefix ( null ) ;   // Initiates PennController
 
-// Show the 'intro' trial first, then all the 'experiment' trials in a random order
-// then send the results and finally show the trial labeled 'bye'
-Sequence ( "intro_ID" ,
-	 "consent_form" ,
-	 "initiate_recorder" ,
-	 "audio_check" ,
-	 "questionnaire" ,	 
-	 
-"Welcome" ,	 	
-"Familiarization" ,	 
-"FAM_block" ,
-"Practice",
-"preload_prac_block" ) ,
-randomize ( "prac_block" ) ,
-"Teil1Untersuchung" ,
-randomize ("list1_block1") ,
-randomize ("list1_block2"),
-randomize ("list1_block3"),
-"PAUSE"
-"Teil2Untersuchung",
-randomize ("list1_block4"),
-randomize ("list1_block5"),
-
-"comment" ,
-"send" ,
-"final" 
-
-CheckPreloaded ( "welcome" ,  5000 )
-    . label ( "preload_welcome" ) ;   
-
-CheckPreloaded ( "familiarization" ,  5000 )
-    . label ( "preload_familiarization" ) ;   
-CheckPreloaded ( "practice" ,  5000 )
-    . label ( "preload_practice" ) ;
- 
-CheckPreloaded ( "Teil1Untersuchung" ,  10000 )
-    . label ( "preload_Teil1Untersuchung" ) ;
-CheckPreloaded ( "FAM_block" ,  10000 )
-    . label ( "preload_FAM_block" ) ;
-CheckPreloaded ( "prac_block" ,  10000 )
-    . label ( "preload_prac_block" ) ;
-CheckPreloaded ( "list1_block1" ,  10000 )
-    . label ( "preload_list1_block1" ) ;
-
 
 /////template for intro participant form, consent, questionnaire
 
