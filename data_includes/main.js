@@ -41,24 +41,24 @@ PennController . ResetPrefix ( null ) ;   // Initiates PennController
 
 	// Show the 'intro' trial first, then all the 'experiment' trials in a random order
 	// then send the results and finally show the trial labeled 'bye'
-	Sequence ( "intro_ID" ,
+	Sequence ( "intro_iD" ,
 		 "consent_form" ,
 		 "initiate_recorder" ,
 		 "audio_check" ,
 		 "questionnaire" ,	 
 		 
-	"Welcome" ,	 	
-	"Familiarization" ,	 
-	"FAM_block" ,
-	"Practice",
+	"welcome" ,	 	
+	"familiarization" ,	 
+	"fam_block" ,
+	"practice",
 	"preload_prac_block" ) ,
 	randomize ( "prac_block" ) ,
-	"Teil1Untersuchung" ,
+	"teil1untersuchung" ,
 	randomize ("list1_block1") ,
 	randomize ("list1_block2"),
 	randomize ("list1_block3"),
-	"PAUSE"
-	"Teil2Untersuchung",
+	"pause"
+	"teil2untersuchung",
 	randomize ("list1_block4"),
 	randomize ("list1_block5"),
 	
@@ -77,10 +77,10 @@ PennController . ResetPrefix ( null ) ;   // Initiates PennController
 	CheckPreloaded ( "practice" ,  5000 )
 	    . label ( "preload_practice" ) ;
 	 
-	CheckPreloaded ( "Teil1Untersuchung" ,  10000 )
-	    . label ( "preload_Teil1Untersuchung" ) ;
-	CheckPreloaded ( "FAM_block" ,  10000 )
-	    . label ( "preload_FAM_block" ) ;
+	CheckPreloaded ( "teil1untersuchung" ,  10000 )
+	    . label ( "preload_teil1untersuchung" ) ;
+	CheckPreloaded ( "fam_block" ,  10000 )
+	    . label ( "preload_fam_block" ) ;
 	CheckPreloaded ( "prac_block" ,  10000 )
 	    . label ( "preload_prac_block" ) ;
 	CheckPreloaded ( "list1_block1" ,  10000 )
@@ -300,7 +300,7 @@ Template ( GetTable ( "intro_recorder.csv" ) ,
 	    defaultText
 	        . print ( )
 	    ,
-	    newImage ( "Familiarization" ,  "Familiarization.jpg" )
+	    newImage ( "familiarization" ,  "familiarization.jpg" )
 	        . size ( 1280 ,  720 )
 	        . print ( )
 	    ,
@@ -310,37 +310,37 @@ Template ( GetTable ( "intro_recorder.csv" ) ,
 	) ;
 	
 
-	Template ( GetTable ( "FAM_block.csv" ) ,
-	    FAM_block  =>
-	    newTrial ( "FAM_block" ,
+	Template ( GetTable ( "fam_block.csv" ) ,
+	    fam_block  =>
+	    newTrial ( "fam_block" ,
 	    
 	    newImage ( "fixation_cross" ,  "fixation.jpg" )
 	        . size ( 300 ,  300 )
 	        . print ( )
 	        . log ( )
 	    ,
-	    newTimer ( "FAM_fixation" ,  500 )
+	    newTimer ( "fam_fixation" ,  500 )
 	        . start ( )
 	        . wait ( )
 	    ,
 	    getImage ( "fixation_cross" )
 	        . remove ( )
 	    ,
-	    newMediaRecorder ( "FAM_recorder" ,  "audio" )
+	    newMediaRecorder ( "fam_recorder" ,  "audio" )
 	        . hidden ( )
 	        . record ( )
 	        . log ( )
 	    ,
-	    newImage ( "FAM_picture" ,  FAM_block . picture )
+	    newImage ( "fam_picture" ,  FAM_block . picture )
 	        . size ( 300 ,  300 )
 	        . print ( )
 	    ,
-	    newTimer ( "FAM_trial" ,  2000 )
+	    newTimer ( "fam_trial" ,  2000 )
 	        . start ( )
 	        . wait ( )
 	        . log ( )
 	    ,
-	    getImage ( "FAM_picture" )
+	    getImage ( "fam_picture" )
 	        . remove ( )
 	    ,
 	    newTimer ( "post_trial" ,  1500 )
@@ -348,7 +348,7 @@ Template ( GetTable ( "intro_recorder.csv" ) ,
 	        . wait ( )
 	        . log ( )
 	    ,
-	    getMediaRecorder ( "FAM_recorder" )
+	    getMediaRecorder ( "fam_recorder" )
 	        . stop ( )
 	        . remove ( )
 		. log ( )
@@ -368,11 +368,11 @@ Template ( GetTable ( "intro_recorder.csv" ) ,
 
 	
 
-	newTrial ( "FAM_kamel" ,
+	newTrial ( "fam_kamel" ,
 	    defaultText
 	        . print ( )
 	    ,
-	    newImage ( "KamelFAM" ,  "KamelFAM.jpg" )
+	    newImage ( "Kamelfam" ,  "Kamelfam.jpg" )
 	        . size ( 1280 ,  720 )
 	        . print ( )
 	    ,
@@ -382,11 +382,11 @@ Template ( GetTable ( "intro_recorder.csv" ) ,
 	) ;
 	
 
-	newTrial ( "BettFAM" , 
+	newTrial ( "bettfam" , 
 	    defaultText
 	        . print ( )
 	    ,
-	    newImage ( "BettFAM" ,  "BettFAM.jpd" )
+	    newImage ( "bettfam" ,  "bettfam.jpd" )
 	        . size ( 1280 ,  720 )
 	        . print ( )
 	    ,
@@ -396,11 +396,11 @@ Template ( GetTable ( "intro_recorder.csv" ) ,
 	) ;
 	
 
-	newTrial ( "KrokodilFAM" ,
+	newTrial ( "krokodilfam" ,
 	    defaultText
 	        . print ( )
 	    ,
-	    newImage ( "KrokodilFAM" ,  "KrokodilFAM.jpg" )
+	    newImage ( "krokodilfam" ,  "krokodilfam.jpg" )
 	        . size ( 1280 ,  720 )
 	        . print ( )
 	    ,
@@ -410,11 +410,11 @@ Template ( GetTable ( "intro_recorder.csv" ) ,
 	) ;
 	
 
-	newTrial ( "AxtFAM" ,
+	newTrial ( "axtfam" ,
 	    defaultText
 	        . print ( )
 	    ,
-	    newImage ( "AxtFAM" ,  "AxtFAM.jpg" )
+	    newImage ( "axtfam" ,  "axtfam.jpg" )
 	        . size ( 1280 ,  720 )
 	        . print ( )
 	    ,
