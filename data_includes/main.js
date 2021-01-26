@@ -421,7 +421,7 @@ Template ( GetTable ( "intro_recorder.csv" ) ,
 	    defaultText
 	        . print ( )
 	    ,
-	    newImage ( "bettfam" ,  "bettfam.jpd" )
+	    newImage ( "bettfam" ,  "bettfam.jpg" )
 	        . size ( 1280 ,  720 )
 	        . print ( )
 	    ,
