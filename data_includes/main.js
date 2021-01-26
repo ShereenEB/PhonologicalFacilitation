@@ -46,21 +46,33 @@ PennController . ResetPrefix ( null ) ;   // Initiates PennController
 		 "initiate_recorder" ,
 		 "audio_check" ,
 		 "questionnaire" ,	 
-		 
-	"welcome" ,	 	
-	"familiarization" ,	 
+	
+	"preload_welcome" ,
+	"welcome" ,	 
+	"preload_familiarization" ,
+	"familiarization" ,
+	"preload_fam_block"
 	"fam_block" ,
-	"practice",
+	"preload_practice",
 	"preload_prac_block" ) ,
 	randomize ( "prac_block" ) ,
+	"preload_teil1untersuchung" ,
 	"teil1untersuchung" ,
+	"preload_list1_block1" ,
 	randomize ("list1_block1") ,
+	"preload_list1_block2" ,
 	randomize ("list1_block2"),
+	"preload_list1_block3" ,
 	randomize ("list1_block3"),
+	"preload_pause" ,
 	"pause",
+	"preload_teil2untersuchung" ,
 	"teil2untersuchung",
+	"preload_list1_block4" ,
 	randomize ("list1_block4"),
+	"preload_list1_block5" ,
 	randomize ("list1_block5"),
+	"preload_bye" ,
 	"bye" ) ;
 	
 
@@ -69,20 +81,44 @@ PennController . ResetPrefix ( null ) ;   // Initiates PennController
 	
 
 	CheckPreloaded ( "familiarization" ,  5000 )
-	    . label ( "preload_familiarization" ) ;   
+	    . label ( "preload_familiarization" ) ;
+
+	CheckPreloaded ( "fam_block" ,  10000 )
+	    . label ( "preload_fam_block" ) ;
+	
 	CheckPreloaded ( "practice" ,  5000 )
 	    . label ( "preload_practice" ) ;
+	
+	CheckPreloaded ( "prac_block" ,  10000 )
+	    . label ( "preload_prac_block" ) ;
 	 
 	CheckPreloaded ( "teil1untersuchung" ,  10000 )
 	    . label ( "preload_teil1untersuchung" ) ;
-	CheckPreloaded ( "fam_block" ,  10000 )
-	    . label ( "preload_fam_block" ) ;
-	CheckPreloaded ( "prac_block" ,  10000 )
-	    . label ( "preload_prac_block" ) ;
+	
 	CheckPreloaded ( "list1_block1" ,  10000 )
 	    . label ( "preload_list1_block1" ) ;
 	
+	CheckPreloaded ( "list1_block2" ,  10000 )
+	    . label ( "preload_list1_block2" ) ;
+	
+	CheckPreloaded ( "list1_block3" ,  10000 )
+	    . label ( "preload_list1_block3" ) ;
 
+	CheckPreloaded ( "pause" ,  10000 )
+	    . label ( "preload_pause" ) ;
+
+	CheckPreloaded ( "teil2untersuchung" ,  10000 )
+	    . label ( "preload_teil2untersuchung" ) ;
+
+	CheckPreloaded ( "list1_block4" ,  10000 )
+	    . label ( "preload_list1_block4" ) ;
+	
+	CheckPreloaded ( "list1_block5" ,  10000 )
+	    . label ( "preload_list1_block5" ) ;
+	
+	CheckPreloaded ( "bye" ,  10000 )
+	    . label ( "preload_bye" ) ;
+	
 	
 // start the recorder and send result files to the server
 Template ( GetTable ( "intro_recorder.csv" ) ,
@@ -94,9 +130,9 @@ Template ( GetTable ( "intro_recorder.csv" ) ,
 	/////template for intro participant form, consent, questionnaire
 	
 
-	Template ( GetTable ( "intro_ID.csv" ) ,
+	Template ( GetTable ( "intro_id.csv" ) ,
 	    iid  =>
-	    newTrial ( "intro_ID" ,
+	    newTrial ( "intro_id" ,
 	        defaultText
 	            . print ( )
 	        ,
@@ -327,7 +363,7 @@ Template ( GetTable ( "intro_recorder.csv" ) ,
 	        . record ( )
 	        . log ( )
 	    ,
-	    newImage ( "fam_picture" ,  FAM_block . picture )
+	    newImage ( "fam_picture" ,  fam_block . picture )
 	        . size ( 300 ,  300 )
 	        . print ( )
 	    ,
@@ -351,12 +387,12 @@ Template ( GetTable ( "intro_recorder.csv" ) ,
 	    )
 		  
 	    . log (  "ProlificID"  ,  getVar ( "ProlificID" )  )
-	    . log (  "Participant_ID" ,  FAM_block . sub_id )
-	    . log (  "Session" ,  FAM_block . session )
-	    . log (  "Target_word" ,  FAM_block . target  )
-	    . log (  "Distractor_word" ,  FAM_block . distractor )
-	    . log (  "Condition" ,  FAM_block . condition )
-	    . log (  "Conditionletter" ,  FAM_block . conditionletter )
+	    . log (  "Participant_ID" ,  fam_block . sub_id )
+	    . log (  "Session" ,  fam_block . session )
+	    . log (  "Target_word" ,  fam_block . target  )
+	    . log (  "Distractor_word" ,  fam_block . distractor )
+	    . log (  "Condition" ,  fam_block . condition )
+	    . log (  "Conditionletter" ,  fam_block . conditionletter )
 	
 
 	) ;
@@ -368,7 +404,7 @@ Template ( GetTable ( "intro_recorder.csv" ) ,
 	    defaultText
 	        . print ( )
 	    ,
-	    newImage ( "Kamelfam" ,  "Kamelfam.jpg" )
+	    newImage ( "Kamelfam" ,  "kamelfam.jpg" )
 	        . size ( 1280 ,  720 )
 	        . print ( )
 	    ,
