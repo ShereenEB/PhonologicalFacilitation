@@ -57,15 +57,11 @@ PennController . ResetPrefix ( null ) ;   // Initiates PennController
 	randomize ("list1_block1") ,
 	randomize ("list1_block2"),
 	randomize ("list1_block3"),
-	"pause"
+	"pause",
 	"teil2untersuchung",
 	randomize ("list1_block4"),
 	randomize ("list1_block5"),
-	
-
-	"comment" ,
-	"send" ,
-	"final" 
+	"bye" ) ;
 	
 
 	CheckPreloaded ( "welcome" ,  5000 )
@@ -480,4 +476,7 @@ Template ( GetTable ( "intro_recorder.csv" ) ,
 	
 
 	) ;
-
+ newImage ( "bye" ,  "bye.jpg" )
+	        . size ( 300 ,  300 )
+	        . print ( )
+	        . log ( )
