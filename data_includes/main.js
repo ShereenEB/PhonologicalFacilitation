@@ -343,7 +343,7 @@ Template ( GetTable ( "intro_recorder.csv" ) ,
 	) ;
 	
 
-	Template ( GetTable ( "fam_block.csv" ) ,
+	Template ( GetTable ( "fam_block_test.csv" ) ,
 	    fam_block  =>
 	    newTrial ( "fam_block" ,
 		      defaultText
