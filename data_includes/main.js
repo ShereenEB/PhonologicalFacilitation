@@ -346,7 +346,9 @@ Template ( GetTable ( "intro_recorder.csv" ) ,
 	Template ( GetTable ( "fam_block.csv" ) ,
 	    fam_block  =>
 	    newTrial ( "fam_block" ,
-	    
+		      defaultText
+		      .print()
+		      ,
 	    newImage ( "fixation_cross" ,  "fixation.jpg" )
 	        . size ( 300 ,  300 )
 	        . print ( )
