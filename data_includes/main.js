@@ -91,7 +91,7 @@ PennController . ResetPrefix ( null ) ;   // Initiates PennController
 // start the recorder and send result files to the server
 Template ( GetTable ( "intro_recorder.csv" ) ,
     ir  =>
-    InitiateRecorder ( "https://gitup.uni-potsdam.de/elbuy/phonologicalfacilitation/exp2/upload-recording.php" ,  ir . Line1 )
+    InitiateRecorder ( "https://gitup.uni-potsdam.de/elbuy/phonologicalfacilitation/exp2/upload-recording.git" ,  ir . Line1 )
         . label ( "initiate_recorder" )
 )
 
