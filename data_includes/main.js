@@ -51,10 +51,10 @@ PennController . ResetPrefix ( null ) ;   // Initiates PennController
 	"welcome" ,	 
 	"preload_familiarization" ,
 	"familiarization" ,
-	"preload_fam_block"
+	"preload_fam_block",
 	"fam_block" ,
 	"preload_practice",
-	"preload_prac_block" ) ,
+	"preload_prac_block"  ,
 	randomize ( "prac_block" ) ,
 	"preload_teil1untersuchung" ,
 	"teil1untersuchung" ,
