@@ -49,8 +49,9 @@ PennController . ResetPrefix ( null ) ;   // Initiates PennController
 	
 	"preload_welcome" ,
 	"welcome" ,	 
-	"preload_familiarization" ,
-	"familiarization" ,
+	"Familiarization_Instruct",
+//	"preload_familiarization" ,
+//	"familiarization" ,		  
 	"preload_fam_block",
 	"fam_block" ,
 	"preload_practice",
