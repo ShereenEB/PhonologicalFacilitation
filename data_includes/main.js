@@ -124,14 +124,14 @@ PennController . ResetPrefix ( null ) ;   // Initiates PennController
 // start the recorder and send result files to the server
 Template ( GetTable ( "intro_recorder.csv" ) ,
     ir  =>
-    InitiateRecorder ( "https://gitup.uni-potsdam.de/elbuy/phonologicalfacilitation.git" ,  ir . Line1 )
+    InitiateRecorder ( "https://gitup.uni-potsdam.de/elbuy/phonologicalfacilitation/tree/master/exp2" ,  ir . Line1 )
         . label ( "initiate_recorder" )
 )
 
 	/////template for intro participant form, consent, questionnaire
 	
 
-	Template ( GetTable ( "intro_id.csv" ) ,
+	Template ( GetTable ( "intro_ID.csv" ) ,
 	    iid  =>
 	    newTrial ( "intro_ID" ,
 	        defaultText
@@ -141,7 +141,7 @@ Template ( GetTable ( "intro_recorder.csv" ) ,
 	            . css ( "text-decoration" , "underline" )
 	            . print ( )
 	        ,
-	        newButton ( "instr_button" ,  "Continue" )
+	        newButton ( "instr_button" ,  "Fortfahren" )
 	            . center ( )
 	            . size ( 100 ,  30 )
 	            . css ( "border" ,  "solid 5px white" )
@@ -210,10 +210,10 @@ Template ( GetTable ( "intro_recorder.csv" ) ,
 	            . after ( getTextInput ( "Language" ) )
 	            . print ( )
 	        ,
-	        newImage ( "yes_hear" ,  "resp_ja.png" )
+	        newImage ( "yes_hear" ,  "resp_ja.jpg" )
 	            . size ( 30 , 20 )
 	        ,
-	        newImage ( "no_hear" ,  "resp_nein.png" )
+	        newImage ( "no_hear" ,  "resp_nein.jpg" )
 	            . size ( 30 , 20 )
 	        ,
 	        newText ( "line5" ,  qu . line5 )
@@ -226,10 +226,10 @@ Template ( GetTable ( "intro_recorder.csv" ) ,
 	            . select ( getImage ( "no_hear" ) )
 	            . log ( )
 	        ,
-	        newImage ( "yes_imp" ,  "resp_ja.png" )
+	        newImage ( "yes_imp" ,  "resp_ja.jpg" )
 	            . size ( 30 , 20 )
 	        ,
-	        newImage ( "no_imp" ,  "resp_nein.png" )
+	        newImage ( "no_imp" ,  "resp_nein.jpg" )
 	            . size ( 30 , 20 )
 	        ,
 	        newText ( "line6" ,  qu . line6 )
@@ -343,7 +343,7 @@ Template ( GetTable ( "intro_recorder.csv" ) ,
 	) ;
 	
 
-	Template ( GetTable ( "fam_block_test.csv" ) ,
+	Template ( GetTable ( "fam_block.csv" ) ,
 	    fam_block  =>
 	    newTrial ( "fam_block" ,
 		      defaultText
