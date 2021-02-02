@@ -2,12 +2,11 @@ PennController.ResetPrefix(null) // Shorten command names (keep this line here)
 
 // Show the 'intro' trial first, then all the 'experiment' trials in a random order
 // then send the results and finally show the trial labeled 'bye'
-Sequence( "intro", "preload_prac_block", "prac_block", "bye" )
+Sequence( "intro", "ID","preload_prac_block", "practice", "prac_block", "bye" )
 
 
 CheckPreloaded("intro", 5000)
     .label("intro");   
-
 
 CheckPreloaded("prac_block", 5000)
     .label("preload_prac_block");   
@@ -18,13 +17,23 @@ CheckPreloaded("bye", 5000)
 
 newTrial( "intro" ,
     newImage("intro.jpg")
-        .size( 800 , 700 )      // Resize the image to 150x250px
+        .size( 400 , 600 )      // Resize the image to 150x250px
         .print()
+        .center()
         ,
         newKey(" ")
         .wait()
 )
 
+newTrial( "practice" ,
+    newImage("practice.jpg")
+        .size( 400 , 600 )      // Resize the image to 150x250px
+        .print()
+        .center()
+        ,
+        newKey(" ")
+        .wait()
+)
 newTrial("ID",
 newText("<p>Prolific ID:</p>")
         .print()
