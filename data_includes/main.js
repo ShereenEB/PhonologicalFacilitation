@@ -47,14 +47,11 @@ PennController . ResetPrefix ( null ) ;   // Initiates PennController
 		 "audio_check" ,
 		 "questionnaire" ,	 
 	
-	"preload_welcome" ,
-	"welcome" ,	 
-	"Familiarization_Instruct",
-//	"preload_familiarization" ,
-//	"familiarization" ,		  
+	"preload_familiarization" ,
+	"familiarization" ,		  
 	"preload_fam_block",
 	"fam_block" ,
-	"preload_practice",
+	"preload_prac_block",
 	"preload_prac_block"  ,
 	randomize ( "prac_block" ) ,
 	"preload_teil1untersuchung" ,
@@ -77,9 +74,6 @@ PennController . ResetPrefix ( null ) ;   // Initiates PennController
 	"bye" ) ;
 	
 
-	CheckPreloaded ( "welcome" ,  5000 )
-	    . label ( "preload_welcome" ) ;   
-	
 
 	CheckPreloaded ( "familiarization" ,  5000 )
 	    . label ( "preload_familiarization" ) ;
@@ -164,7 +158,7 @@ Template ( GetTable ( "intro_recorder.csv" ) ,
 	            . add ( 0 ,  0 ,  getText ( "line1" ) )
 	            . print ( )
 	        ,
-	        newButton ( "I agree." )
+	        newButton ( "Ich stimme zu." )
 	            . print ( )
 	            . center ( )
 	            . log ( )
@@ -314,7 +308,7 @@ Template ( GetTable ( "intro_recorder.csv" ) ,
 	        newText ( "line8" ,  ac . line8 )
 	            . css ( "border" ,  "solid 2px white" )
 	        ,
-	        newButton ( "ac_test_button" ,  "Continue" )
+	        newButton ( "ac_test_button" ,  "Fortfahren" )
 	            . center ( )
 	            . size ( 100 ,  30 )
 	            . css ( "border" ,  "solid 5px white" )
@@ -324,12 +318,10 @@ Template ( GetTable ( "intro_recorder.csv" ) ,
 	) ;
 	
 
-	
-
 	////start familiarization trials
 	
 
-	newTrial ( "Familiarization_Instruct" ,
+	newTrial ( "Familiarization" ,
 	    defaultText
 	        . print ( )
 	    ,
@@ -348,118 +340,23 @@ Template ( GetTable ( "intro_recorder.csv" ) ,
 	    newTrial ( "fam_block" ,
 		      defaultText
 		      .print()
-		      ,
-	    newImage ( "fixation_cross" ,  "fixation.jpg" )
-	        . size ( 300 ,  300 )
-	        . print ( )
-	        . log ( )
-	    ,
-	    newTimer ( "fam_fixation" ,  500 )
-	        . start ( )
-	        . wait ( )
-	    ,
-	    getImage ( "fixation_cross" )
-	        . remove ( )
-	    ,
-	    newMediaRecorder ( "fam_recorder" ,  "audio" )
-	        . hidden ( )
-	        . record ( )
-	        . log ( )
 	    ,
 	    newImage ( "fam_picture" ,  fam_block . picture )
 	        . size ( 300 ,  300 )
 	        . print ( )
 	    ,
-	    newTimer ( "fam_trial" ,  2000 )
-	        . start ( )
-	        . wait ( )
-	        . log ( )
-	    ,
 	    getImage ( "fam_picture" )
 	        . remove ( )
-	    ,
-	    newTimer ( "post_trial" ,  1500 )
-	        . start ( )
-	        . wait ( )
-	        . log ( )
-	    ,
-	    getMediaRecorder ( "fam_recorder" )
-	        . stop ( )
-	        . remove ( )
-		. log ( )
-	    )
-		  
-	    . log (  "ProlificID"  ,  getVar ( "ProlificID" )  )
-	    . log (  "Participant_ID" ,  fam_block . sub_id )
-	    . log (  "Session" ,  fam_block . session )
-	    . log (  "Target_word" ,  fam_block . target  )
-	    . log (  "Distractor_word" ,  fam_block . distractor )
-	    . log (  "Condition" ,  fam_block . condition )
-	    . log (  "Conditionletter" ,  fam_block . conditionletter )
-	
-
-	) ;
-	
-
-	
-
-	newTrial ( "fam_kamel" ,
-	    defaultText
-	        . print ( )
-	    ,
-	    newImage ( "Kamelfam" ,  "kamelfam.jpg" )
-	        . size ( 1280 ,  720 )
-	        . print ( )
-	    ,
-	    newKey ( "space" ,  "" )
+		      
+		,		      
+		      
+		newKey ( "space" ,  "" )
 		. log ( )
 	        . wait ( )
 	) ;
 	
 
-	newTrial ( "bettfam" , 
-	    defaultText
-	        . print ( )
-	    ,
-	    newImage ( "bettfam" ,  "bettfam.jpg" )
-	        . size ( 1280 ,  720 )
-	        . print ( )
-	    ,
-	    newKey ( "space" ,  "" )
-		. log ( )
-	        . wait ( )
-	) ;
-	
-
-	newTrial ( "krokodilfam" ,
-	    defaultText
-	        . print ( )
-	    ,
-	    newImage ( "krokodilfam" ,  "krokodilfam.jpg" )
-	        . size ( 1280 ,  720 )
-	        . print ( )
-	    ,
-	    newKey ( "space" ,  "" )
-		. log ( )
-	        . wait ( )
-	) ;
-	
-
-	newTrial ( "axtfam" ,
-	    defaultText
-	        . print ( )
-	    ,
-	    newImage ( "axtfam" ,  "axtfam.jpg" )
-	        . size ( 1280 ,  720 )
-	        . print ( )
-	    ,
-	    newKey ( "space" ,  "" )
-		. log ( )
-	        . wait ( )
-	)
-	
-
-	////////////////////////////////////// templates for practice trials 
+	///////////////////////////////////// templates for practice trials 
 	
 
 	Template ( GetTable ( "prac_block.csv" ) ,
@@ -515,7 +412,3 @@ Template ( GetTable ( "intro_recorder.csv" ) ,
 	
 
 	) ;
- newImage ( "bye" ,  "bye.jpg" )
-	        . size ( 300 ,  300 )
-	        . print ( )
-	        . log ( )
