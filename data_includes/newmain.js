@@ -13,7 +13,10 @@ Sequence( "intro_ID",
 	 randomize ("fam_block"),
 	 "preload_prac_block", 
 	 "practice", 
-	 randomize("prac_block"), 
+	 randomize("prac_block"),
+	 "preload_list1_block1",
+	 "teil1untersuchung",
+	 randomize("list1_block1"),
 	 "preload_bye", 
 	 "bye" );
 
@@ -425,6 +428,59 @@ Template ( GetTable ( "prac_block.csv" ) ,
     // Add these columns to the results lines of these Template-based trials
 
 );
+
+
+Template(GetTable("list1_block1.csv"),
+   list1_block1 =>
+    newTrial("list1_block1",
+    
+    newImage("fixation_cross", "fixation.jpg")
+        .size(1280, 720)
+        .print()
+        .log()
+    ,
+    newTimer("list1_block1_fixation", 500)
+        .start()
+        .wait()
+    ,
+    getImage("fixation_cross")
+        .remove()
+    ,
+    newMediaRecorder("list1_block1_recorder", "audio")
+        .hidden()
+        .record()
+        .log()
+    ,
+    newImage("list1_block1_picture", list1_block1.picture)
+        .size(1280, 720)
+        .print()
+    ,
+    newTimer("list1_block1_trial", 2000)
+        .start()
+        .wait()
+        .log()
+    ,
+    getImage("list1_block1_picture")
+        .remove()
+    ,
+    newTimer("post_trial", 1500)
+        .start()
+        .wait()
+        .log()
+    ,
+    getMediaRecorder("list1_block1_recorder")
+        .stop()
+        .remove()
+	.log()    
+    )
+    .log( "sub_id"     , list1_block1.sub_id)
+    .log( "session" , list1_block1.session)
+    .log( "target", list1_block1.target )
+    .log( "distractor", list1_block1.distractor)
+    .log( "condition", list1_block1.condition)
+    .log( "picture", list1_block1.picture)
+);
+
 
 
 newTrial("bye",
