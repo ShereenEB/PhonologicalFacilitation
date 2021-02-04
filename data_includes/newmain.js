@@ -7,7 +7,9 @@ Sequence( "intro_ID",
 	 "consent_form",
 	 "initiate_recorder",
 	 "audio_check",
-	 "questionnaire", 
+	 "questionnaire",
+	 "preload_fam_block",
+	 "fam_block",
 	 "preload_prac_block", 
 	 "practice", 
 	 randomize("prac_block"), 
@@ -33,26 +35,15 @@ CheckPreloaded("bye", 5000)
     .label("preload_bye");   
 
 
-//newTrial( "practice" ,
-  //  newImage("practice.jpg")
-    //    .size( 400 , 600 )      // Resize the image to 150x250px
-      //  .print()
-        //.center()
-        //,
-        //newKey(" ")
-        //.wait()
-//)
-//newTrial("ID",
-//newText("<p>Prolific ID:</p>")
-  //      .print()
-    //,
-    //newTextInput()
-      //  .print()
-        //.wait()                 // The next command won't be executed until Enter is pressed
-        //.setVar( "Prolific ID" )
-        // This setVar command stores the value from the TextInput element into the Var element
-//)
-
+newTrial( "practice" ,
+  newImage("practice.jpg")
+    .size( 1280 , 720 )      // Resize the image to 150x250px
+  .print()
+.center()
+ ,
+ newKey(" ")
+ .wait()
+)
 
 //start the recorder and send result files to the server
 
