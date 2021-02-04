@@ -10,7 +10,7 @@ Sequence( "intro_ID",
 	 "questionnaire",
 	 "preload_fam_block",
 	 "familiarization",
-	 randomize("fam_block"),
+	 randomize ("fam_block"),
 	 "preload_prac_block", 
 	 "practice", 
 	 randomize("prac_block"), 
@@ -26,14 +26,14 @@ CheckPreloaded("fixation_cross", 5000)
 CheckPreloaded("consent_form", 5000)
     .label("intro_ID");
 
+CheckPreloaded("familiarization", 5000)
+    .label("preload_familiarization")
+
 CheckPreloaded("fam_block", 5000)
-    .label("preload_fam_block");
-    
+    .label("preload_fam_block")
+
 CheckPreloaded("prac_block", 5000)
     .label("preload_prac_block");
-    
-CheckPreloaded("familiarization", 5000)
-    .label("familiarization");
 
 CheckPreloaded("practice", 5000)
     .label("preload_practice")
@@ -42,25 +42,6 @@ CheckPreloaded("bye", 5000)
     .label("preload_bye");   
 
 
-newTrial ("familiarization",
-newImage("familiarization.jpg")
-.size *1280, 720)
-.print()
-.center()
-,
-    newKey(" ")
-        .wait()
-
-
-newTrial( "practice" ,
-  newImage("practice.jpg")
-    .size( 1280 , 720 )     
-  .print()
-.center()
- ,
- newKey(" ")
- .wait()
-)
 
 //start the recorder and send result files to the server
 
@@ -357,7 +338,48 @@ Template(GetTable("audio_check.csv"),
     )
 );
 
-// This Template command generates as many trials as there are rows in myTable.csv
+
+
+newTrial( "familiarization" ,
+  newImage("familiarization.jpg")
+    .size( 1280 , 720 )     
+  .print()
+.center()
+ ,
+ newKey(" ")
+ .wait()
+
+);
+
+Template ( GetTable ( "fam_block.csv" ) ,
+	    fam_block  =>
+	    newTrial ( "fam_block" ,
+		      defaultText
+		      .print()
+		      ,
+	  	    newImage ( "fam_picture" ,  fam_block . picture )
+	  	    .center()
+	        . size ( 1280 ,  720 )
+	        . print ( )
+	    ,
+	    
+	    newKey(" ")
+         .wait()
+)
+
+);
+
+newTrial( "practice" ,
+  newImage("practice.jpg")
+    .size( 1280 , 720 )     
+  .print()
+.center()
+ ,
+ newKey(" ")
+ .wait()
+
+);
+
 Template ( GetTable ( "prac_block.csv" ) ,
 	    prac_block  =>
 	    newTrial ( "prac_block" ,
@@ -401,32 +423,17 @@ Template ( GetTable ( "prac_block.csv" ) ,
     .log( "Distractor" , prac_block.distractor )
     .log( "Condition" , prac_block.condition )
     // Add these columns to the results lines of these Template-based trials
+
 );
 
-Template ( GetTable ( "fam_block.csv" ) ,
-	    fam_block  =>
-	    newTrial ( "fam_block" ,
-		      defaultText
-		      .print()
-		      ,
-	    newImage ( "fam_picture" ,  fam_block . picture )
-	        . size ( 1280 ,  720 )
-	        . print ( )
-	    ,
-	    
-	    getImage ( "prac_picture" )
-	        .center()
-	        . remove ( )
-,
-   
-    newKey(" ")
+
+newTrial("bye",
+    newText("<p>Thank you for your participation!</p>")
+        .print()
+    ,
+    newText("Click on this link to finalize your participation:")
+        .print()
+    ,
+    newButton("Finish")
         .wait()
-
-
-newTrial( "bye" ,
-    newText("Thank you for your participation!").print(),
-    newButton("Finish").wait()
-)
-
-.setOption( "countsForProgressBar" , false )
-// Make sure the progress bar is full upon reaching this last (non-)trial
+);
