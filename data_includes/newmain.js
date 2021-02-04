@@ -113,7 +113,12 @@ Template(GetTable("questionnaire.csv"),
         defaultText
             .print()
         
-  ,
+         ,
+        
+        newText(" ").print()
+        
+        ,
+        
         newText(" ").print()
         
         ,
@@ -364,15 +369,19 @@ Template(GetTable("audio_check.csv"),
 );
 
 
-
-newTrial( "familiarization" ,
-  newImage("familiarization.jpg")
-    .size( 1280 , 720 )     
-  .print()
-.center()
- ,
- newKey(" ")
- .wait()
+Template(GetTable("familiarization.csv"),
+    fam =>
+    newTrial("familiarization",
+        defaultText
+            .print()
+        ,
+        newText("line1", fam.line1)
+            .center()
+            .css("border", "solid 2px white")
+     ,
+      newKey(" ")
+         .wait()
+)
 
 );
 
