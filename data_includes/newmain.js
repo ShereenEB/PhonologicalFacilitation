@@ -115,89 +115,187 @@ Template(GetTable("questionnaire.csv"),
         newText("line1", qu.line1)
             .css("border", "solid 10px white")
 	    .css("background", "white")
+	    .center()
+        ,
+        
+        newText(" ").print()
+        
         ,
         newTextInput("Gender")
             .size(100, 20)
             .log()
+        .center()
+        ,
+        
+         newText(" ").print()
+        
         ,
         newText("line2", qu.line2)
             .after(getTextInput("Gender"))
             .print()
+        .center()
+        ,
+        
+         newText(" ").print()
+        
         ,
         newDropDown("Age", "--")
             .add("18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99", "100+")
             .print()
+            .center()
             .log()
+        ,
+         
+         newText(" ").print()
+        
         ,
         newText("line3", qu.line3)
             .after(getDropDown("Age"))
+            .center()
             .print()
+        ,
+        
+         newText(" ").print()
+        
         ,
         newTextInput("Language")
             .size(100, 20)
+            .center()
             .log()
+        ,
+         
+         newText(" ").print()
+        
         ,
         newText("line4", qu.line4)
             .after(getTextInput("Language"))
+            .center()
             .print()
         ,
+        
+         newText(" ").print()
+        
+        ,
         newImage("yes_hear", "resp_ja.jpg")
+        .center()
             .size(30,20)
         ,
+        
+         newText(" ").print()
+        
+        ,
         newImage("no_hear", "resp_nein.jpg")
+        .center()
             .size(30,20)
+        ,
+        
+         newText(" ").print()
+        
         ,
         newText("line5", qu.line5)
             .after(getImage("yes_hear"))
             .after(getImage("no_hear"))
+            .center()
             .print()
+        ,
+        
+         newText(" ").print()
+        
         ,
         newSelector("Hearing")
             .add(getImage("yes_hear") , getImage("no_hear"))
             .select(getImage("no_hear"))
+            .center()
             .log()
+        ,
+        
+         newText(" ").print()
+        
         ,
         newImage("yes_imp", "resp_ja.jpg")
             .size(30,20)
+            .center()
+        ,
+        
+         newText(" ").print()
+        
         ,
         newImage("no_imp", "resp_nein.jpg")
             .size(30,20)
+            .center()
+        ,
+        
+         newText(" ").print()
+        
         ,
         newText("line6", qu.line6)
             .after(getImage("yes_imp"))
             .after(getImage("no_imp"))
+            .center()
             .print()
+        ,
+        
+         newText(" ").print()
+        
         ,
         newSelector("Impairments_yn")
             .add(getImage("yes_imp") , getImage("no_imp"))
             .select(getImage("no_imp"))
+            .center()
             .log()
+        ,
+        
+         newText(" ").print()
+        
         ,
         newTextInput("Impairments")
             .size(100, 20)
+            .center()
             .log()
+        ,
+        
+         newText(" ").print()
+        
         ,
         newText("line7", qu.line7)
             .after(getTextInput("Impairments"))
+            .center()
             .print()
 	,
+	 newText(" ").print()
+        
+        ,
     	newVar("ProlificID")
 	,       
         newTextInput("Prolific_ID_input")
             .size(200, 20)
+            .center()
 	    .print()
             .log()
+        ,
+        
+         newText(" ").print()
+        
         ,
 	getVar("ProlificID")
         	.global()
         	.set(getTextInput("Prolific_ID_input"))
 	,
+	 
+	 newText(" ").print()
+        
+        ,
         newText("line8", qu.line8)
             .after(getTextInput("Prolific_ID_input"))
+            .center()
             .print()        
    	 ,
+   	  newText(" ").print()
+        
+        ,
         newButton("qu_test_button", "Fortfahren in den Vollbildmodus.")
             .print()
+            .center()
             .wait(
                 getTextInput("Gender")
                 .test.text(/[^ ]+/)
