@@ -3,19 +3,22 @@ PennController.ResetPrefix(null) // Shorten command names (keep this line here)
 // Show the 'intro' trial first, then all the 'experiment' trials in a random order
 // then send the results and finally show the trial labeled 'bye'
 
-Sequence( "intro_ID",
+Sequence("intro_ID",
 	 "consent_form",
 	 "initiate_recorder",
 	 "audio_check",
 	 "questionnaire",
-	 "preload_fam_block",
+	 "preload_familiarization",
 	 "familiarization",
+	 "preload_fam_block",
 	 randomize ("fam_block"),
-	 "preload_prac_block", 
+	 "preload_practice",
 	 "practice", 
+	 "preload_prac_block",
 	 randomize("prac_block"),
-	 "preload_list1_block1",
+	 "preload_teil1untersuchung",
 	 "teil1untersuchung",
+	 "preload_list1_block1",
 	 randomize("list1_block1"),
 	 "preload_bye", 
 	 "bye" );
@@ -35,11 +38,17 @@ CheckPreloaded("familiarization", 5000)
 CheckPreloaded("fam_block", 5000)
     .label("preload_fam_block")
 
+CheckPreloaded("practice", 5000)
+    .label("preload_practice")
+    
 CheckPreloaded("prac_block", 5000)
     .label("preload_prac_block");
 
-CheckPreloaded("practice", 5000)
-    .label("preload_practice")
+CheckPreloaded("teil1untersuchung", 5000)
+    .label("preload_teil1untersuchung");
+
+CheckPreloaded("list1_block1", 5000)
+    .label("preload_list1_block1")
 
 CheckPreloaded("bye", 5000)
     .label("preload_bye");   
@@ -103,6 +112,10 @@ Template(GetTable("questionnaire.csv"),
     newTrial("questionnaire",
         defaultText
             .print()
+        
+  ,
+        newText(" ").print()
+        
         ,
         newText("line1", qu.line1)
             .css("border", "solid 10px white")
@@ -302,35 +315,44 @@ Template(GetTable("audio_check.csv"),
     ac =>
     newTrial("audio_check",
         defaultText
+        .center()
             .print()
         ,
         newText("line1", ac.line1)
 	     .bold()	
+	     .center()
 	     .css("background", "white")
         ,
         newText("line2", ac.line2)
+        .center()
         ,
         newText("line3", ac.line3)
+        .center()
         ,
         newText("line4", ac.line4)
+        .center()
 	     .css("background", "white")
         ,
         newText("line5", ac.line5)
+        .center()
 	     .css("background", "white")
         ,
         newText("line6", ac.line6)
+        .center()
 	     .css("background", "white")
 	,
         newText("line7", ac.line7)
+        .center()
  	     .css("background", "white")
 	,
+        newText("line8", ac.line8)
+        .center()
+            .css("border", "solid 2px white")
+            ,
         newMediaRecorder("ac_recorder", "audio")
             .center()
             .print()
 	    .css( "border" , "solid 3px red" )
-        ,
-        newText("line8", ac.line8)
-            .css("border", "solid 2px white")
         ,
         newButton("ac_test_button", "Fortfahren")
             .center()
@@ -416,7 +438,7 @@ Template ( GetTable ( "prac_block.csv" ) ,
 	        .center()
 	        . remove ( )
 	    ,
-	     newTimer ( "post_trial" ,  1500 )
+	     newTimer ( "prac_posttrial" ,  1500 )
 	        . start ( )
 	        . wait ( )
 	        . log ( )
@@ -463,7 +485,7 @@ Template(GetTable("list1_block1.csv"),
     getImage("list1_block1_picture")
         .remove()
     ,
-    newTimer("post_trial", 1500)
+    newTimer("list1_block1_posttrial", 1500)
         .start()
         .wait()
         .log()
