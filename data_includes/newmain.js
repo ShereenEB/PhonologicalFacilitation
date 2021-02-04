@@ -9,6 +9,7 @@ Sequence( "intro_ID",
 	 "audio_check",
 	 "questionnaire",
 	 "preload_fam_block",
+	 "familiarization",
 	 "fam_block",
 	 "preload_prac_block", 
 	 "practice", 
@@ -25,8 +26,14 @@ CheckPreloaded("fixation_cross", 5000)
 CheckPreloaded("consent_form", 5000)
     .label("intro_ID");
 
+CheckPreloaded("fam_block", 5000)
+    .label("preload_fam_block");
+    
 CheckPreloaded("prac_block", 5000)
     .label("preload_prac_block");
+    
+CheckPreloaded("familiarization", 5000)
+    .label("familiarization");
 
 CheckPreloaded("practice", 5000)
     .label("preload_practice")
@@ -35,9 +42,19 @@ CheckPreloaded("bye", 5000)
     .label("preload_bye");   
 
 
+newTrial ("familiarization",
+newImage("familiarization.jpg")
+.size *1280, 720)
+.print()
+.center()
+,
+    newKey(" ")
+        .wait()
+
+
 newTrial( "practice" ,
   newImage("practice.jpg")
-    .size( 1280 , 720 )      // Resize the image to 150x250px
+    .size( 1280 , 720 )     
   .print()
 .center()
  ,
@@ -384,13 +401,32 @@ Template ( GetTable ( "prac_block.csv" ) ,
     .log( "Distractor" , prac_block.distractor )
     .log( "Condition" , prac_block.condition )
     // Add these columns to the results lines of these Template-based trials
-)
+);
+
+Template ( GetTable ( "fam_block.csv" ) ,
+	    fam_block  =>
+	    newTrial ( "fam_block" ,
+		      defaultText
+		      .print()
+		      ,
+	    newImage ( "fam_picture" ,  fam_block . picture )
+	        . size ( 1280 ,  720 )
+	        . print ( )
+	    ,
+	    
+	    getImage ( "prac_picture" )
+	        .center()
+	        . remove ( )
+,
+   
+    newKey(" ")
+        .wait()
 
 
-// Spaces and linebreaks don't matter to the script: we've only been using them for the sake of readability
 newTrial( "bye" ,
     newText("Thank you for your participation!").print(),
-    newButton().wait()  // Wait for a click on a non-displayed button = wait here forever
+    newButton("Finish").wait()
 )
+
 .setOption( "countsForProgressBar" , false )
 // Make sure the progress bar is full upon reaching this last (non-)trial
