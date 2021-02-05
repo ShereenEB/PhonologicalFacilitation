@@ -51,7 +51,7 @@ Sequence("intro_ID",
 	 "preload_list1_block1",
 	 randomize("list1_block1"),
 	 "preload_bye", 
-	 "final_sample" );
+	 "final_message" );
 
 CheckPreloaded("intro_ID", 5000)
     .label("intro_ID");
@@ -564,18 +564,35 @@ Template(GetTable("list1_block1.csv"),
 );
 
 
-newTrial("final_sample",
-    newText("<p>Thank you for your participation!</p>")
+
+Template(GetTable("final_message.csv"),
+    final_message =>
+    newTrial("final_message",
+        defaultText
+            .print()
+        ,
+        newText("line1", final_message.line1)
+            .center()
+            .css("border", "solid 2px white")
+     ,
+     
+     newText("line2", final_message.line2)
+            .center()
+            .css("border", "solid 2px white")
+            ,
+    
+     newText("<p><a href='https://_____________> https://app.prolific.co/submissions/complete?cc=2D6D5A46.</a></p>")
         .print()
+        .center()
+        .css("border", "solid 2px white")
     ,
-    newText("<p><a href='https://gitup.uni-potsdam.de/elbuy/phonologicalfacilitation/tree/master'</a><p><p> Öffnen Sie diesen Link in einem neuen Fenster und klicken Sie dann auf 'fertig'.<p>")
-        .print()
-    ,
-   newButton("finish", "fertig")
+        
+      newButton("finish", "fertig")
             .center()
             .size(100, 30)
             .css("border", "solid 5px white")
             .print()
             .wait()
-    
+)
+
 );
