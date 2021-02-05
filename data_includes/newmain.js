@@ -50,7 +50,16 @@ Sequence("intro_ID",
 	 "untersuchung1",
 	 "preload_list1_block1",
 	 randomize("list1_block1"),
-	 "preload_bye", 
+	 "preload_list1_block2",
+	 randomize("list1_block2"),
+	 "preload_list1_block3",
+	 randomize("list1_block3"),
+	 "pause",
+	 "untersuchung2",
+	 "preload_list1_block4",
+	 randomize("list1_block4"),
+	 "preload_list1_block5",
+	 randomize("list1_block5"),
 	 "final_message" );
 
 CheckPreloaded("intro_ID", 5000)
@@ -89,7 +98,7 @@ CheckPreloaded("bye", 5000)
 
 Template(GetTable("intro_recorder.csv"),
     ir =>
-    InitiateRecorder("https://gitup.uni-potsdam.de/elbuy/phonologicalfacilitation/tree/master/exp2", ir.line1)
+    InitiateRecorder("https://gitup.uni-potsdam.de/elbuy/phonologicalfacilitation.git", ir.line1)
         .label("initiate_recorder")
 )
 
@@ -564,6 +573,246 @@ Template(GetTable("list1_block1.csv"),
 );
 
 
+Template(GetTable("list1_block2.csv"),
+   list1_block2 =>
+    newTrial("list1_block2",
+    
+    newImage("fixation_cross", "fixation.jpg")
+        .size(1280, 720)
+        .print()
+        .log()
+    ,
+    newTimer("list1_block2_fixation", 500)
+        .start()
+        .wait()
+    ,
+    getImage("fixation_cross")
+        .remove()
+    ,
+    newMediaRecorder("list1_block2_recorder", "audio")
+        .hidden()
+        .record()
+        .log()
+    ,
+    newImage("list1_block2_picture", list1_block2.picture)
+        .size(1280, 720)
+        .print()
+    ,
+    newTimer("list1_block2_trial", 2000)
+        .start()
+        .wait()
+        .log()
+    ,
+    getImage("list1_block2_picture")
+        .remove()
+    ,
+    newTimer("list1_block2_posttrial", 1500)
+        .start()
+        .wait()
+        .log()
+    ,
+    getMediaRecorder("list1_block2_recorder")
+        .stop()
+        .remove()
+	.log()    
+    )
+    .log( "sub_id"     , list1_block2.sub_id)
+    .log( "session" , list1_block2.session)
+    .log( "target", list1_block2.target )
+    .log( "distractor", list1_block2.distractor)
+    .log( "condition", list1_block2.condition)
+    .log( "picture", list1_block2.picture)
+);
+
+
+Template(GetTable("list1_block3.csv"),
+   list1_block3 =>
+    newTrial("list1_block3",
+    
+    newImage("fixation_cross", "fixation.jpg")
+        .size(1280, 720)
+        .print()
+        .log()
+    ,
+    newTimer("list1_block3_fixation", 500)
+        .start()
+        .wait()
+    ,
+    getImage("fixation_cross")
+        .remove()
+    ,
+    newMediaRecorder("list1_block3_recorder", "audio")
+        .hidden()
+        .record()
+        .log()
+    ,
+    newImage("list1_block3_picture", list1_block3.picture)
+        .size(1280, 720)
+        .print()
+    ,
+    newTimer("list1_block3_trial", 2000)
+        .start()
+        .wait()
+        .log()
+    ,
+    getImage("list1_block3_picture")
+        .remove()
+    ,
+    newTimer("list1_block3_posttrial", 1500)
+        .start()
+        .wait()
+        .log()
+    ,
+    getMediaRecorder("list1_block3_recorder")
+        .stop()
+        .remove()
+	.log()    
+    )
+    .log( "sub_id"     , list1_block3.sub_id)
+    .log( "session" , list1_block3.session)
+    .log( "target", list1_block3.target )
+    .log( "distractor", list1_block3.distractor)
+    .log( "condition", list1_block3.condition)
+    .log( "picture", list1_block3.picture)
+);
+
+
+Template(GetTable("pause.csv"),
+    pause =>
+    newTrial("pause",
+        defaultText
+            .print()
+        ,
+        newText("line1", pause.line1)
+            .center()
+            .css("border", "solid 2px white")
+     ,
+      newKey(" ")
+         .wait()
+)
+
+);
+
+
+Template(GetTable("untersuchung2.csv"),
+    untersuchung2 =>
+    newTrial("untersuchung2",
+        defaultText
+            .print()
+        ,
+        newText("line1", untersuchung2.line1)
+            .center()
+            .css("border", "solid 2px white")
+     ,
+      newKey(" ")
+         .wait()
+)
+
+);
+
+
+Template(GetTable("list1_block4.csv"),
+   list1_block4 =>
+    newTrial("list1_block4",
+    
+    newImage("fixation_cross", "fixation.jpg")
+        .size(1280, 720)
+        .print()
+        .log()
+    ,
+    newTimer("list1_block4_fixation", 500)
+        .start()
+        .wait()
+    ,
+    getImage("fixation_cross")
+        .remove()
+    ,
+    newMediaRecorder("list1_block4_recorder", "audio")
+        .hidden()
+        .record()
+        .log()
+    ,
+    newImage("list1_block4_picture", list1_block4.picture)
+        .size(1280, 720)
+        .print()
+    ,
+    newTimer("list1_block4_trial", 2000)
+        .start()
+        .wait()
+        .log()
+    ,
+    getImage("list1_block4_picture")
+        .remove()
+    ,
+    newTimer("list1_block4_posttrial", 1500)
+        .start()
+        .wait()
+        .log()
+    ,
+    getMediaRecorder("list1_block4_recorder")
+        .stop()
+        .remove()
+	.log()    
+    )
+    .log( "sub_id"     , list1_block4.sub_id)
+    .log( "session" , list1_block4.session)
+    .log( "target", list1_block4.target )
+    .log( "distractor", list1_block4.distractor)
+    .log( "condition", list1_block4.condition)
+    .log( "picture", list1_block4.picture)
+);
+
+
+Template(GetTable("list1_block5.csv"),
+   list1_block5 =>
+    newTrial("list1_block5",
+    
+    newImage("fixation_cross", "fixation.jpg")
+        .size(1280, 720)
+        .print()
+        .log()
+    ,
+    newTimer("list1_block5_fixation", 500)
+        .start()
+        .wait()
+    ,
+    getImage("fixation_cross")
+        .remove()
+    ,
+    newMediaRecorder("list1_block5_recorder", "audio")
+        .hidden()
+        .record()
+        .log()
+    ,
+    newImage("list1_block5_picture", list1_block5.picture)
+        .size(1280, 720)
+        .print()
+    ,
+    newTimer("list1_block5_trial", 2000)
+        .start()
+        .wait()
+        .log()
+    ,
+    getImage("list1_block5_picture")
+        .remove()
+    ,
+    newTimer("list1_block5_posttrial", 1500)
+        .start()
+        .wait()
+        .log()
+    ,
+    getMediaRecorder("list1_block5_recorder")
+        .stop()
+        .remove()
+	.log()    
+    )
+    .log( "sub_id"     , list1_block5.sub_id)
+    .log( "session" , list1_block5.session)
+    .log( "target", list1_block5.target )
+    .log( "distractor", list1_block5.distractor)
+    .log( "condition", list1_block5.condition)
+    .log( "picture", list1_block5.picture)
+);
 
 Template(GetTable("final_message.csv"),
     final_message =>
