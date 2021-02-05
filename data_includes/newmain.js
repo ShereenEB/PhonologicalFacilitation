@@ -568,7 +568,7 @@ newTrial("final_sample",
     newText("<p>Thank you for your participation!</p>")
         .print()
     ,
-    newText("<p><a href='https://gitup.uni-potsdam.de/elbuy/phonologicalfacilitation/tree/master'</a><p><p> Öffnen Sie diesen Link in einem neuen Fenster und klicken Sie dann auf 'fertig'.<p>")
+    newText("<p><a href='https://gitup.uni-potsdam.de/elbuy/phonologicalfacilitation/tree/master'</a><p><p> Öffnen Sie diesen Link in einem neuen Fenster und klicken Sie dann auf 'fertig'".<p>)
         .print()
     ,
    newButton("finish", "fertig")
