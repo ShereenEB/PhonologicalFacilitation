@@ -401,7 +401,7 @@ Template ( GetTable ( "fam_block.csv" ) ,
 
 );
 
-Template(GetTable("Ubung.csv"),
+Template(GetTable("ubung.csv"),
     ubung =>
     newTrial("ubung",
         defaultText
