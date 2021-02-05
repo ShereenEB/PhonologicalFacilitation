@@ -1,5 +1,37 @@
 PennController.ResetPrefix(null) // Shorten command names (keep this line here)
 
+var showProgressBar = true;
+//var progressBarText = "Fortschritt";
+
+//edit text pop up for voice recording
+let replaceConsentMic = ()=>{
+        let consentLink = $(".PennController-PennController a.Message-continue-link");
+        if (consentLink.length > 0 && consentLink[0].innerHTML.match(/^By clicking this link I understand that I grant this experiment's script access to my recording device/))
+            consentLink.html("Durch klicken erteile ich diesem Skript Zugriff auf mein Mikrofon.");
+        else
+            window.requestAnimationFrame( replaceConsentMic );
+};
+
+window.requestAnimationFrame( replaceConsentMic );
+
+const replacePreloadingMessage = ()=>{
+    const preloadingMessage = $(".PennController-PennController > div");
+    if (preloadingMessage.length > 0 && preloadingMessage[0].innerHTML.match(/^<p>Please wait while the resources are preloading/))
+        preloadingMessage.html("<p>Laden, bitte warten</p>");
+    window.requestAnimationFrame( replacePreloadingMessage );
+};
+window.requestAnimationFrame( replacePreloadingMessage );
+
+const replaceUploadingMessage = ()=>{
+    const uploadingMessage = $(".PennController-PennController > p");
+    if (uploadingMessage.length > 0 && uploadingMessage[0].innerHTML.match(/^Please wait while the archive of your recordings is being uploaded to the server/))
+        uploadingMessage.html("Bitte warten Sie, bis das Archiv Ihrer Aufnahmen auf den Server hochgeladen wurde. Dies kann einige Minuten dauern.");
+    window.requestAnimationFrame( replaceUploadingMessage );
+};
+window.requestAnimationFrame( replaceUploadingMessage );
+
+// DebugOff()
+
 // Show the 'intro' trial first, then all the 'experiment' trials in a random order
 // then send the results and finally show the trial labeled 'bye'
 
@@ -19,7 +51,7 @@ Sequence("intro_ID",
 	 "preload_list1_block1",
 	 randomize("list1_block1"),
 	 "preload_bye", 
-	 "bye" );
+	 "final_sample" );
 
 CheckPreloaded("intro_ID", 5000)
     .label("intro_ID");
@@ -36,14 +68,14 @@ CheckPreloaded("familiarization", 5000)
 CheckPreloaded("fam_block", 5000)
     .label("preload_fam_block")
 
-CheckPreloaded("practice", 5000)
-    .label("preload_practice")
+CheckPreloaded("ubung", 5000)
+    .label("preload_ubung")
     
 CheckPreloaded("prac_block", 5000)
     .label("preload_prac_block");
 
-CheckPreloaded("teil1untersuchung", 5000)
-    .label("preload_teil1untersuchung");
+CheckPreloaded("untersuchung1", 5000)
+    .label("preload_untersuchung1");
 
 CheckPreloaded("list1_block1", 5000)
     .label("preload_list1_block1")
@@ -533,13 +565,13 @@ Template(GetTable("list1_block1.csv"),
 
 
 
-newTrial("bye",
+newTrial("final_sample",
     newText("<p>Thank you for your participation!</p>")
         .print()
     ,
-    newText("Click on this link to finalize your participation:")
+    newText("<p><a href=___________________________'https'>Click here to validate your participation.</a></p>")
         .print()
     ,
-    newButton("Finish")
+    newButton("void")
         .wait()
 );
