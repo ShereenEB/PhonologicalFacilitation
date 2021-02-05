@@ -12,12 +12,10 @@ Sequence("intro_ID",
 	 "familiarization",
 	 "preload_fam_block",
 	 randomize ("fam_block"),
-	 "preload_practice",
-	 "practice", 
+	 "ubung", 
 	 "preload_prac_block",
 	 randomize("prac_block"),
-	 "preload_teil1untersuchung",
-	 "teil1untersuchung",
+	 "untersuchung1",
 	 "preload_list1_block1",
 	 randomize("list1_block1"),
 	 "preload_bye", 
@@ -403,16 +401,22 @@ Template ( GetTable ( "fam_block.csv" ) ,
 
 );
 
-newTrial( "practice" ,
-  newImage("practice.jpg")
-    .size( 1280 , 720 )     
-  .print()
-.center()
- ,
- newKey(" ")
- .wait()
+Template(GetTable("Ubung.csv"),
+    ubung =>
+    newTrial("ubung",
+        defaultText
+            .print()
+        ,
+        newText("line1", ubung.line1)
+            .center()
+            .css("border", "solid 2px white")
+     ,
+      newKey(" ")
+         .wait()
+)
 
 );
+
 
 Template ( GetTable ( "prac_block.csv" ) ,
 	    prac_block  =>
@@ -460,6 +464,21 @@ Template ( GetTable ( "prac_block.csv" ) ,
 
 );
 
+Template(GetTable("untersuchung1.csv"),
+    untersuchung1 =>
+    newTrial("untersuchung1",
+        defaultText
+            .print()
+        ,
+        newText("line1", untersuchung1.line1)
+            .center()
+            .css("border", "solid 2px white")
+     ,
+      newKey(" ")
+         .wait()
+)
+
+);
 
 Template(GetTable("list1_block1.csv"),
    list1_block1 =>
