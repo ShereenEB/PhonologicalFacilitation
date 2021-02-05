@@ -564,14 +564,18 @@ Template(GetTable("list1_block1.csv"),
 );
 
 
-
 newTrial("final_sample",
     newText("<p>Thank you for your participation!</p>")
         .print()
     ,
-    newText("<p><a href=___________________________'https'>Click here to validate your participation.</a></p>")
+    newText("<p><a href='https://gitup.uni-potsdam.de/elbuy/phonologicalfacilitation/tree/master'</a><p><p> Öffnen Sie diesen Link in einem neuen Fenster und klicken Sie dann auf 'fertig'.<p>")
         .print()
     ,
-    newButton("void")
-        .wait()
+   newButton("finish", "fertig")
+            .center()
+            .size(100, 30)
+            .css("border", "solid 5px white")
+            .print()
+            .wait()
+    
 );
