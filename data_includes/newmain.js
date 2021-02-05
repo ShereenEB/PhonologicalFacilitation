@@ -581,7 +581,7 @@ Template(GetTable("final_message.csv"),
             .css("border", "solid 2px white")
             ,
     
-     newText("<p><a href='https://_____________> https://app.prolific.co/submissions/complete?cc=2D6D5A46.</a></p>")
+     newText("<p><a href='https://_________> https://app.prolific.co/submissions/complete?cc=2D6D5A46.</a></p>")
         .print()
         .center()
         .css("border", "solid 2px white")
