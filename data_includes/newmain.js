@@ -98,7 +98,7 @@ CheckPreloaded("bye", 5000)
 
 Template(GetTable("intro_recorder.csv"),
     ir =>
-    InitiateRecorder("https://gitup.uni-potsdam.de/elbuy/phonologicalfacilitation.git", ir.line1)
+    InitiateRecorder("https://gitup.uni-potsdam.de/elbuy/phonologicalfacilitation/tree/master/upload-recording.php", ir.line1)
         .label("initiate_recorder")
 )
 
