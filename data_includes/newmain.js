@@ -429,7 +429,7 @@ Template ( GetTable ( "fam_block.csv" ) ,
 	    newTrial ( "fam_block" ,
 		      defaultText
 		      .print()
-		      ,
+            ,
 	  	    newImage ( "fam_picture" ,  fam_block . picture )
 	  	    .center()
 	        . size ( 1280 ,  720 )
@@ -481,6 +481,7 @@ Template ( GetTable ( "prac_block.csv" ) ,
 	    ,
 	    newImage ( "prac_picture" ,  prac_block . picture )
 	        . size ( 1280 ,  720 )
+	        .center()
 	        . print ( )
 	    ,
 	    newTimer ( "prac_trial" ,  2000 )
@@ -527,6 +528,7 @@ Template(GetTable("list1_block1.csv"),
     
     newImage("fixation_cross", "fixation.jpg")
         .size(1280, 720)
+        .center()
         .print()
         .log()
     ,
@@ -535,6 +537,7 @@ Template(GetTable("list1_block1.csv"),
         .wait()
     ,
     getImage("fixation_cross")
+     .center()
         .remove()
     ,
     newMediaRecorder("list1_block1_recorder", "audio")
@@ -544,6 +547,7 @@ Template(GetTable("list1_block1.csv"),
     ,
     newImage("list1_block1_picture", list1_block1.picture)
         .size(1280, 720)
+        .center()
         .print()
     ,
     newTimer("list1_block1_trial", 2000)
@@ -552,6 +556,7 @@ Template(GetTable("list1_block1.csv"),
         .log()
     ,
     getImage("list1_block1_picture")
+         .center()
         .remove()
     ,
     newTimer("list1_block1_posttrial", 1500)
@@ -579,6 +584,7 @@ Template(GetTable("list1_block2.csv"),
     
     newImage("fixation_cross", "fixation.jpg")
         .size(1280, 720)
+         .center()
         .print()
         .log()
     ,
@@ -587,6 +593,7 @@ Template(GetTable("list1_block2.csv"),
         .wait()
     ,
     getImage("fixation_cross")
+     .center()
         .remove()
     ,
     newMediaRecorder("list1_block2_recorder", "audio")
@@ -596,6 +603,7 @@ Template(GetTable("list1_block2.csv"),
     ,
     newImage("list1_block2_picture", list1_block2.picture)
         .size(1280, 720)
+         .center()
         .print()
     ,
     newTimer("list1_block2_trial", 2000)
@@ -604,6 +612,7 @@ Template(GetTable("list1_block2.csv"),
         .log()
     ,
     getImage("list1_block2_picture")
+     .center()
         .remove()
     ,
     newTimer("list1_block2_posttrial", 1500)
@@ -631,6 +640,7 @@ Template(GetTable("list1_block3.csv"),
     
     newImage("fixation_cross", "fixation.jpg")
         .size(1280, 720)
+         .center()
         .print()
         .log()
     ,
@@ -639,6 +649,7 @@ Template(GetTable("list1_block3.csv"),
         .wait()
     ,
     getImage("fixation_cross")
+     .center()
         .remove()
     ,
     newMediaRecorder("list1_block3_recorder", "audio")
@@ -648,6 +659,7 @@ Template(GetTable("list1_block3.csv"),
     ,
     newImage("list1_block3_picture", list1_block3.picture)
         .size(1280, 720)
+         .center()
         .print()
     ,
     newTimer("list1_block3_trial", 2000)
@@ -656,6 +668,7 @@ Template(GetTable("list1_block3.csv"),
         .log()
     ,
     getImage("list1_block3_picture")
+     .center()
         .remove()
     ,
     newTimer("list1_block3_posttrial", 1500)
@@ -717,6 +730,7 @@ Template(GetTable("list1_block4.csv"),
     
     newImage("fixation_cross", "fixation.jpg")
         .size(1280, 720)
+         .center()
         .print()
         .log()
     ,
@@ -725,6 +739,7 @@ Template(GetTable("list1_block4.csv"),
         .wait()
     ,
     getImage("fixation_cross")
+     .center()
         .remove()
     ,
     newMediaRecorder("list1_block4_recorder", "audio")
@@ -733,6 +748,7 @@ Template(GetTable("list1_block4.csv"),
         .log()
     ,
     newImage("list1_block4_picture", list1_block4.picture)
+     .center()
         .size(1280, 720)
         .print()
     ,
@@ -742,6 +758,7 @@ Template(GetTable("list1_block4.csv"),
         .log()
     ,
     getImage("list1_block4_picture")
+     .center()
         .remove()
     ,
     newTimer("list1_block4_posttrial", 1500)
@@ -769,6 +786,7 @@ Template(GetTable("list1_block5.csv"),
     
     newImage("fixation_cross", "fixation.jpg")
         .size(1280, 720)
+         .center()
         .print()
         .log()
     ,
@@ -777,6 +795,7 @@ Template(GetTable("list1_block5.csv"),
         .wait()
     ,
     getImage("fixation_cross")
+     .center()
         .remove()
     ,
     newMediaRecorder("list1_block5_recorder", "audio")
@@ -786,6 +805,7 @@ Template(GetTable("list1_block5.csv"),
     ,
     newImage("list1_block5_picture", list1_block5.picture)
         .size(1280, 720)
+         .center()
         .print()
     ,
     newTimer("list1_block5_trial", 2000)
@@ -794,6 +814,7 @@ Template(GetTable("list1_block5.csv"),
         .log()
     ,
     getImage("list1_block5_picture")
+     .center()
         .remove()
     ,
     newTimer("list1_block5_posttrial", 1500)
