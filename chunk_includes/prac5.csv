@@ -1,0 +1,5 @@
+﻿"session,sub_id,picture,target,distractor,condition,conditionletter,block"
+"prac_block,p01,krokodil15.jpg,krokodil,xxxx,baseline,E0"
+"prac_block,p01,bett11.jpg,bett,bank,onsetphon,A0"
+"prac_block,p01,axt12.jpg,axt,ankreis,nonlinear,B0"
+"prac_block,p01,kamel13.jpg,kamel,ankreis,unr1,C0"
