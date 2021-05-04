@@ -1,5 +1,7 @@
 PennController.ResetPrefix(null) // initiates PennController
 
+//DebugOff()
+
 var showProgressBar = true;
 //var progressBarText = "Fortschritt";
 
@@ -30,8 +32,6 @@ const replaceUploadingMessage = ()=>{
 };
 window.requestAnimationFrame( replaceUploadingMessage );
 
-// DebugOff()
-
 Sequence("intro_ID",
 	 "consent_form",
 	 "initiate_recorder",
@@ -45,27 +45,21 @@ Sequence("intro_ID",
 	 "preload_prac_block",
 	 randomize("prac_block"),
 	  "untersuchung1",
-	  "preload_prac1",
-	   randomize("prac1"),
+	  "preload_fillers1",
+	   randomize("fillers1"),
 	 "preload_list1_block1",
 	 randomize("list1_block1"),
-	  "preload_prac2",
-	   randomize("prac2"),
-	 "preload_list1_block2" ,
+	  	 "preload_list1_block2" ,
 	randomize ("list1_block2"),
-	 "preload_prac3",
-	   randomize("prac3"),
-	"preload_list1_block3" ,
+		"preload_list1_block3" ,
 	randomize ("list1_block3"),
 		 "pause",
 	 "untersuchung2",
-	  "preload_prac4",
-	   randomize("prac4"),
+	  "preload_fillers2",
+	   randomize("fillers2"),
 		 "preload_list1_block4" ,
 	randomize ("list1_block4"),
-	 "preload_prac5",
-	   randomize("prac5"),
-		 "preload_list1_block5" ,
+	 		 "preload_list1_block5" ,
 	randomize ("list1_block5"),
 	"comment",
 	"uploads",
@@ -111,7 +105,7 @@ CheckPreloaded ( "familiarization" ,  5000 )
 
 Template(GetTable("intro_recorder.csv"),
     ir =>
-    InitiateRecorder("http://www.sheelb.dreamhosters.com/home/phonologicalfacilitation/dh_i6xudf/upload-recording.php", ir.line1)
+    InitiateRecorder("https://phonologicalfacilitation.online/home/dh_i6xudf/phonologicalfacilitation.online/phonologicalfacilitation/uploadrecordings.php",ir.line1)
         .label("initiate_recorder")
 )
 
@@ -534,9 +528,9 @@ Template(GetTable("untersuchung1.csv"),
 
 );
 
-Template ( GetTable ( "prac1.csv" ) ,
-	    prac1  =>
-	    newTrial ( "prac1" ,
+Template ( GetTable ( "fillers1.csv" ) ,
+	    fillers1  =>
+	    newTrial ( "fillers1" ,
 		      defaultText
 		      .print()
 		      ,
@@ -546,7 +540,7 @@ Template ( GetTable ( "prac1.csv" ) ,
 	        . print ( )
 	        . log ( )
 	    ,
-	    newTimer ( "prac1_fixation" ,  500 )
+	    newTimer ( "fillers1_fixation" ,  500 )
 	        . start ( )
 	        . wait ( )
 	    ,
@@ -554,29 +548,29 @@ Template ( GetTable ( "prac1.csv" ) ,
 	        . center()
 	        . remove ( )
 	    ,
-	    newImage ( "prac1_picture" ,  prac1 . picture )
+	    newImage ( "fillers1_picture" ,  fillers1 . picture )
 	        . size ( 1280 ,  720 )
 	        .center()
 	        . print ( )
 	    ,
-	    newTimer ( "prac1_trial" ,  2000 )
+	    newTimer ( "fillers1_trial" ,  2000 )
 	        . start ( )
 	        . wait ( )
 	        . log ( )
 	    ,
-	    getImage ( "prac1_picture" )
+	    getImage ( "fillers1_picture" )
 	        .center()
 	        . remove ( )
 	    ,
-	     newTimer ( "prac1_posttrial" ,  1500 )
+	     newTimer ( "fillers1_posttrial" ,  1500 )
 	        . start ( )
 	        . wait ( )
 	        . log ( )
 	    )
-    .log( "Participant ID" , prac1.sub_id )
-    .log( "Target" , prac1.target )
-    .log( "Distractor" , prac1.distractor )
-    .log( "Condition" , prac1.condition )
+    .log( "Participant ID" , fillers1.sub_id )
+    .log( "Target" , fillers1.target )
+    .log( "Distractor" , fillers1.distractor )
+    .log( "Condition" , fillers1.condition )
 );
 
 Template(GetTable("list1_block1.csv"),
@@ -635,51 +629,6 @@ Template(GetTable("list1_block1.csv"),
 );
 
 
-Template ( GetTable ( "prac2.csv" ) ,
-	    prac2  =>
-	    newTrial ( "prac2" ,
-		      defaultText
-		      .print()
-		      ,
-	    newImage ( "fixation_cross" ,  "fixation.jpg" )
-	        .center()
-	        . size ( 1280 ,  720 )
-	        . print ( )
-	        . log ( )
-	    ,
-	    newTimer ( "prac2_fixation" ,  500 )
-	        . start ( )
-	        . wait ( )
-	    ,
-	    getImage ( "fixation_cross" )
-	        . center()
-	        . remove ( )
-	    ,
-	    newImage ( "prac2_picture" ,  prac2 . picture )
-	        . size ( 1280 ,  720 )
-	        .center()
-	        . print ( )
-	    ,
-	    newTimer ( "prac2_trial" ,  2000 )
-	        . start ( )
-	        . wait ( )
-	        . log ( )
-	    ,
-	    getImage ( "prac2_picture" )
-	        .center()
-	        . remove ( )
-	    ,
-	     newTimer ( "prac2_posttrial" ,  1500 )
-	        . start ( )
-	        . wait ( )
-	        . log ( )
-	    )
-    .log( "Participant ID" , prac2.sub_id )
-    .log( "Target" , prac2.target )
-    .log( "Distractor" , prac2.distractor )
-    .log( "Condition" , prac2.condition )
-);
-
 Template(GetTable("list1_block2.csv"),
    list1_block2 =>
     newTrial("list1_block2",
@@ -733,52 +682,6 @@ Template(GetTable("list1_block2.csv"),
     .log( "distractor", list1_block2.distractor)
     .log( "condition", list1_block2.condition)
     .log( "picture", list1_block2.picture)
-);
-
-
-Template ( GetTable ( "prac3.csv" ) ,
-	    prac3  =>
-	    newTrial ( "prac3" ,
-		      defaultText
-		      .print()
-		      ,
-	    newImage ( "fixation_cross" ,  "fixation.jpg" )
-	        .center()
-	        . size ( 1280 ,  720 )
-	        . print ( )
-	        . log ( )
-	    ,
-	    newTimer ( "prac3_fixation" ,  500 )
-	        . start ( )
-	        . wait ( )
-	    ,
-	    getImage ( "fixation_cross" )
-	        . center()
-	        . remove ( )
-	    ,
-	    newImage ( "prac3_picture" ,  prac3 . picture )
-	        . size ( 1280 ,  720 )
-	        .center()
-	        . print ( )
-	    ,
-	    newTimer ( "prac3_trial" ,  2000 )
-	        . start ( )
-	        . wait ( )
-	        . log ( )
-	    ,
-	    getImage ( "prac3_picture" )
-	        .center()
-	        . remove ( )
-	    ,
-	     newTimer ( "prac3_posttrial" ,  1500 )
-	        . start ( )
-	        . wait ( )
-	        . log ( )
-	    )
-    .log( "Participant ID" , prac3.sub_id )
-    .log( "Target" , prac3.target )
-    .log( "Distractor" , prac3.distractor )
-    .log( "Condition" , prac3.condition )
 );
 
 Template(GetTable("list1_block3.csv"),
@@ -870,9 +773,9 @@ Template(GetTable("untersuchung2.csv"),
 
 );
 
-Template ( GetTable ( "prac4.csv" ) ,
-	    prac4  =>
-	    newTrial ( "prac4" ,
+Template ( GetTable ( "fillers2.csv" ) ,
+	    fillers2  =>
+	    newTrial ( "fillers2" ,
 		      defaultText
 		      .print()
 		      ,
@@ -882,7 +785,7 @@ Template ( GetTable ( "prac4.csv" ) ,
 	        . print ( )
 	        . log ( )
 	    ,
-	    newTimer ( "prac4_fixation" ,  500 )
+	    newTimer ( "fillers2_fixation" ,  500 )
 	        . start ( )
 	        . wait ( )
 	    ,
@@ -890,29 +793,29 @@ Template ( GetTable ( "prac4.csv" ) ,
 	        . center()
 	        . remove ( )
 	    ,
-	    newImage ( "prac4_picture" ,  prac4 . picture )
+	    newImage ( "fillers2_picture" ,  fillers2 . picture )
 	        . size ( 1280 ,  720 )
 	        .center()
 	        . print ( )
 	    ,
-	    newTimer ( "prac4_trial" ,  2000 )
+	    newTimer ( "fillers2_trial" ,  2000 )
 	        . start ( )
 	        . wait ( )
 	        . log ( )
 	    ,
-	    getImage ( "prac4_picture" )
+	    getImage ( "fillers2_picture" )
 	        .center()
 	        . remove ( )
 	    ,
-	     newTimer ( "prac4_posttrial" ,  1500 )
+	     newTimer ( "fillers2_posttrial" ,  1500 )
 	        . start ( )
 	        . wait ( )
 	        . log ( )
 	    )
-    .log( "Participant ID" , prac4.sub_id )
-    .log( "Target" , prac4.target )
-    .log( "Distractor" , prac4.distractor )
-    .log( "Condition" , prac4.condition )
+    .log( "Participant ID" , fillers2.sub_id )
+    .log( "Target" , fillers2.target )
+    .log( "Distractor" , fillers2.distractor )
+    .log( "Condition" , fillers2.condition )
 );
 
 
@@ -969,52 +872,6 @@ Template(GetTable("list1_block4.csv"),
     .log( "distractor", list1_block4.distractor)
     .log( "condition", list1_block4.condition)
     .log( "picture", list1_block4.picture)
-);
-
-
-Template ( GetTable ( "prac5.csv" ) ,
-	    prac5  =>
-	    newTrial ( "prac5" ,
-		      defaultText
-		      .print()
-		      ,
-	    newImage ( "fixation_cross" ,  "fixation.jpg" )
-	        .center()
-	        . size ( 1280 ,  720 )
-	        . print ( )
-	        . log ( )
-	    ,
-	    newTimer ( "prac5_fixation" ,  500 )
-	        . start ( )
-	        . wait ( )
-	    ,
-	    getImage ( "fixation_cross" )
-	        . center()
-	        . remove ( )
-	    ,
-	    newImage ( "prac5_picture" ,  prac5 . picture )
-	        . size ( 1280 ,  720 )
-	        .center()
-	        . print ( )
-	    ,
-	    newTimer ( "prac5_trial" ,  2000 )
-	        . start ( )
-	        . wait ( )
-	        . log ( )
-	    ,
-	    getImage ( "prac5_picture" )
-	        .center()
-	        . remove ( )
-	    ,
-	     newTimer ( "prac5_posttrial" ,  1500 )
-	        . start ( )
-	        . wait ( )
-	        . log ( )
-	    )
-    .log( "Participant ID" , prac5.sub_id )
-    .log( "Target" , prac5.target )
-    .log( "Distractor" , prac5.distractor )
-    .log( "Condition" , prac5.condition )
 );
 
 Template(GetTable("list1_block5.csv"),
