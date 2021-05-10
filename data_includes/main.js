@@ -49,20 +49,25 @@ Sequence("intro_ID",
 	   randomize("fillers1"),
 	 "preload_list1_block1",
 	 randomize("list1_block1"),
+	 "uploads",
 	  	 "preload_list1_block2" ,
 	randomize ("list1_block2"),
+	"uploads",
 		"preload_list1_block3" ,
 	randomize ("list1_block3"),
+	"uploads",
 		 "pause",
 	 "untersuchung2",
 	  "preload_fillers2",
 	   randomize("fillers2"),
 		 "preload_list1_block4" ,
 	randomize ("list1_block4"),
+	"uploads",
 	 		 "preload_list1_block5" ,
 	randomize ("list1_block5"),
-	"comment",
 	"uploads",
+	"comment",
+	"*sync_uploads*",
 	"send",
 	"final_message"
 	 );
@@ -111,7 +116,7 @@ CheckPreloaded ( "familiarization" ,  5000 )
 
 Template(GetTable("intro_recorder.csv"),
     ir =>
-    InitiateRecorder("https://www.phonologicalfacilitation.online/home/dh_xnkx8s/phonologicalfacilitation.online/phonologicalfacilitation/uploadrecordings.php",ir.line1)
+    InitiateRecorder("https://www.phonologicalfacilitation.online/phonologicalfacilitation/uploadrecordings.php",ir.line1)
         .label("initiate_recorder")
 ) 
 
@@ -634,6 +639,7 @@ Template(GetTable("list1_block1.csv"),
     .log( "picture", list1_block1.picture)
 );
 
+UploadRecordings("uploads");
 
 Template(GetTable("list1_block2.csv"),
    list1_block2 =>
@@ -880,6 +886,8 @@ Template(GetTable("list1_block4.csv"),
     .log( "picture", list1_block4.picture)
 );
 
+
+
 Template(GetTable("list1_block5.csv"),
    list1_block5 =>
     newTrial("list1_block5",
@@ -936,6 +944,7 @@ Template(GetTable("list1_block5.csv"),
 );
 
 
+
 Template(GetTable("feedback.csv"),
     fb =>
         newTrial("comment",
@@ -967,7 +976,7 @@ Template(GetTable("feedback.csv"),
         )
 )
 
-UploadRecordings("uploads", "noblock")
+UploadRecordings("*sync_uploads*")
 
 SendResults("send")
 
