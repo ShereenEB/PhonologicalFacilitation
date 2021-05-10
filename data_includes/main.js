@@ -79,6 +79,9 @@ CheckPreloaded ( "familiarization" ,  5000 )
 	CheckPreloaded ( "prac_block" ,  10000 )
 	    . label ( "preload_prac_block" ) ;
 	 
+	 CheckPreloaded ( "fillers1" ,  5000 )
+	    . label ( "preload_fillers1" ) ;
+	    
 	CheckPreloaded ( "teil1untersuchung" ,  10000 )
 	    . label ( "preload_teil1untersuchung" ) ;
 	
@@ -90,6 +93,9 @@ CheckPreloaded ( "familiarization" ,  5000 )
 	    
 	      CheckPreloaded ( "list1_block3" ,  10000 )
 	    . label ( "preload_list1_block3" ) ;
+	    
+	     CheckPreloaded ( "fillers2" ,  5000 )
+	    . label ( "preload_fillers2" ) ;
 	    
 	      CheckPreloaded ( "list1_block4" ,  10000 )
 	    . label ( "preload_list1_block4" ) ;
@@ -105,9 +111,9 @@ CheckPreloaded ( "familiarization" ,  5000 )
 
 Template(GetTable("intro_recorder.csv"),
     ir =>
-    InitiateRecorder("https://phonologicalfacilitation.online/home/dh_i6xudf/phonologicalfacilitation.online/phonologicalfacilitation/uploadrecordings.php",ir.line1)
+    InitiateRecorder("https://www.phonologicalfacilitation.online/home/dh_xnkx8s/phonologicalfacilitation.online/phonologicalfacilitation/uploadrecordings.php",ir.line1)
         .label("initiate_recorder")
-)
+) 
 
 Template(GetTable("intro_ID.csv"),
     iid =>
