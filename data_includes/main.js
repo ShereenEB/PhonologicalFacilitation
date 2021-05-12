@@ -981,27 +981,14 @@ UploadRecordings("*sync_uploads*")
 SendResults("send")
 
 Template(GetTable("final_message.csv"),
-    final_message =>
-    newTrial("final_message",
-        defaultText
-            .print()
-        ,
-        newText("line1", final_message.line1)
-            .center()
-            .css("border", "solid 2px white")
-     ,
-     
-     newText("line2", final_message.line2)
-            .center()
-            .css("border", "solid 2px white")
+    fin =>
+        newTrial("final_message",
+            exitFullscreen()
             ,
-        
-      newButton("finish", "fertig")
-            .center()
-            .size(100, 30)
-            .css("border", "solid 5px white")
-            .print()
-            .wait()
-)
-
+            newText(fin.line1)
+                .print()
+            ,
+            newButton("void")
+                .wait()
+        )
 );
