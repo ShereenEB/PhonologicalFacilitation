@@ -1,14 +1,5 @@
 PennController.ResetPrefix(null) // initiates PennController
 
-// newMediaRecorder(GetURLParameter("id")+"_list1_block1_recorder")
-         .hidden()
-        .record()
-        .log()
-//getMediaRecorder(GetURLParameter("id")+"_list1_block1_recorder")
-         .stop()
-        .remove()
-        .log()
-
 //DebugOff()
 
 var showProgressBar = true;
