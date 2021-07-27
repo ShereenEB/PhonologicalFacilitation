@@ -1,23 +1,26 @@
 PennController.ResetPrefix(null) // initiates PennController
 
-//DebugOff()
+//DebugOff();
+
 
 var showProgressBar = true;
-//var progressBarText = "Fortschritt";
+var progressBarText = "Fortschritt";
 
 //edit text pop up for voice recording
 let replaceConsentMic = ()=>{
         let consentLink = $(".PennController-PennController a.Message-continue-link");
         if (consentLink.length > 0 && consentLink[0].innerHTML.match(/^By clicking this link I understand that I grant this experiment's script access to my recording device/))
-            consentLink.html("Durch klicken erteile ich diesem Skript Zugriff auf mein Mikrofon");
+            consentLink.html("Durch klicken erteile ich diesem Skript Zugriff auf mein Mikrofon.");
         else
             window.requestAnimationFrame( replaceConsentMic );
 };
 
+window.requestAnimationFrame( replaceConsentMic );
+
 const replacePreloadingMessage = ()=>{
     const preloadingMessage = $(".PennController-PennController > div");
     if (preloadingMessage.length > 0 && preloadingMessage[0].innerHTML.match(/^<p>Please wait while the resources are preloading/))
-        preloadingMessage.html("<p>Laden, bitte warten</p>");
+        preloadingMessage.html("<p>Please wait while the resources are preloading.</p>");
     window.requestAnimationFrame( replacePreloadingMessage );
 };
 window.requestAnimationFrame( replacePreloadingMessage );
@@ -25,7 +28,7 @@ window.requestAnimationFrame( replacePreloadingMessage );
 const replaceUploadingMessage = ()=>{
     const uploadingMessage = $(".PennController-PennController > p");
     if (uploadingMessage.length > 0 && uploadingMessage[0].innerHTML.match(/^Please wait while the archive of your recordings is being uploaded to the server/))
-        uploadingMessage.html("Bitte warten Sie, bis das Archiv Ihrer Aufnahmen auf den Server hochgeladen wurde. Dies kann einige Minuten dauern.");
+        uploadingMessage.html("Please wait while the archive of your recordings is being uploaded to the server.");
     window.requestAnimationFrame( replaceUploadingMessage );
 };
 window.requestAnimationFrame( replaceUploadingMessage );
@@ -296,7 +299,7 @@ Template(GetTable("questionnaire.csv"),
         
         ,
     	newVar("ProlificID")
-	,       
+	,
         newTextInput("Prolific_ID_input")
             .size(200, 20)
             .center()
@@ -519,13 +522,14 @@ Template ( GetTable ( "fillers1.csv" ) ,
     .log( "Condition" , fillers1.condition )
 );
 
+
 Template(GetTable("list1_block1.csv"),
    list1_block1 =>
-    newTrial("list1_block1",
+    newTrial("list1_block2",
     
     newImage("fixation_cross", "fixation.jpg")
         .size(1280, 720)
-        .center()
+         .center()
         .print()
         .log()
     ,
@@ -544,7 +548,7 @@ Template(GetTable("list1_block1.csv"),
     ,
     newImage("list1_block1_picture", list1_block1.picture)
         .size(1280, 720)
-        .center()
+         .center()
         .print()
     ,
     newTimer("list1_block1_trial", 2000)
@@ -553,10 +557,10 @@ Template(GetTable("list1_block1.csv"),
         .log()
     ,
     getImage("list1_block1_picture")
-         .center()
+     .center()
         .remove()
     ,
-    newTimer("list1_block1_posttrial", 1500)
+    newTimer("list1_block2_posttrial", 1500)
         .start()
         .wait()
         .log()
@@ -574,7 +578,7 @@ Template(GetTable("list1_block1.csv"),
     .log( "distractor", list1_block1.distractor)
     .log( "picture", list1_block1.picture)
      .log( "condition", list1_block1.condition)
-      .log( "recordingfile", list1_block1.recordingfile)
+     .log( "recordingfile", list1_block1.recordingfile)
    
 );
 
@@ -599,7 +603,7 @@ Template(GetTable("list1_block2.csv"),
      .center()
         .remove()
     ,
-        newMediaRecorder(GetURLParameter("id")+[list1_block2.picture,list1_block2.condition].join('_'), "audio")
+    newMediaRecorder(GetURLParameter("id")+"_list1_block2", "audio")
         .hidden()
         .record()
         .log()
@@ -623,19 +627,20 @@ Template(GetTable("list1_block2.csv"),
         .wait()
         .log()
     ,
-    getMediaRecorder(GetURLParameter("id")+[list1_block2.picture,list1_block2.condition])
+    getMediaRecorder(GetURLParameter("id")+"_list1_block2")
         .stop()
         .remove()
 	.log()    
     )
     
-    .log( "group"     , list1_block2.list)
-     .log( "group"     , list1_block2.block)
+    .log( "list"     , list1_block2.list)
+     .log( "block"     , list1_block2.block)
          .log( "item" , list1_block2.item)
     .log( "target", list1_block2.target )
     .log( "distractor", list1_block2.distractor)
     .log( "picture", list1_block2.picture)
      .log( "condition", list1_block2.condition)
+     .log( "recordingfile", list1_block2.recordingfile)
 );
 
 
@@ -657,7 +662,7 @@ Template(GetTable("list1_block3.csv"),
      .center()
         .remove()
     ,
-    newMediaRecorder(GetURLParameter("id")+[list1_block3.picture,list1_block3.condition].join('_'), "audio")
+     newMediaRecorder(GetURLParameter("id")+"_list1_block3", "audio")
         .hidden()
         .record()
         .log()
@@ -682,19 +687,20 @@ Template(GetTable("list1_block3.csv"),
         .log()
 
    ,
-     getMediaRecorder(GetURLParameter("id")+[list1_block3.picture,list1_block3.condition])
+     getMediaRecorder(GetURLParameter("id")+"_list1_block3")
         .stop()
         .remove()
 	.log()    
     )
     
-    .log( "group"     , list1_block3.list)
-     .log( "group"     , list1_block3.block)
+    .log( "list"     , list1_block3.list)
+     .log( "block"     , list1_block3.block)
          .log( "item" , list1_block3.item)
     .log( "target", list1_block3.target )
     .log( "distractor", list1_block3.distractor)
     .log( "picture", list1_block3.picture)
      .log( "condition", list1_block3.condition)
+     .log( "recordingfile", list1_block3.recordingfile)
 );
 
 Template(GetTable("pause.csv"),
@@ -794,7 +800,7 @@ Template(GetTable("list1_block4.csv"),
      .center()
         .remove()
     ,
-      newMediaRecorder(GetURLParameter("id")+[list1_block4.picture,list1_block4.condition].join('_'), "audio")
+     newMediaRecorder(GetURLParameter("id")+"_list1_block4", "audio")
         .hidden()
         .record()
         .log()
@@ -819,19 +825,20 @@ Template(GetTable("list1_block4.csv"),
         .log()
     ,
        
-     getMediaRecorder(GetURLParameter("id")+[list1_block4.picture,list1_block4.condition])
+     getMediaRecorder(GetURLParameter("id")+"_list1_block4")
         .stop()
         .remove()
 	.log()    
     )
     
-    .log( "group"     , list1_block4.list)
-     .log( "group"     , list1_block4.block)
+    .log( "list"     , list1_block4.list)
+     .log( "block"     , list1_block4.block)
          .log( "item" , list1_block4.item)
     .log( "target", list1_block4.target )
     .log( "distractor", list1_block4.distractor)
     .log( "picture", list1_block4.picture)
      .log( "condition", list1_block4.condition)
+     .log( "recordingfile", list1_block4.recordingfile)
 );
 
 
@@ -855,7 +862,7 @@ Template(GetTable("list1_block5.csv"),
      .center()
         .remove()
     ,
-    newMediaRecorder(GetURLParameter("id")+[list1_block4.picture,list1_block4.condition].join('_'), "audio")
+   newMediaRecorder(GetURLParameter("id")+"_list1_block5", "audio")
         .hidden()
         .record()
         .log()
@@ -879,19 +886,20 @@ Template(GetTable("list1_block5.csv"),
         .wait()
         .log()
        ,
-     getMediaRecorder(GetURLParameter("id")+[list1_block5.picture,list1_block5.condition])
+     getMediaRecorder(GetURLParameter("id")+"_list1_block5")
         .stop()
         .remove()
 	.log()    
     )
     
-    .log( "group"     , list1_block5.list)
-     .log( "group"     , list1_block5.block)
+    .log( "list"     , list1_block5.list)
+     .log( "block"     , list1_block5.block)
          .log( "item" , list1_block5.item)
     .log( "target", list1_block5.target )
     .log( "distractor", list1_block5.distractor)
     .log( "picture", list1_block5.picture)
      .log( "condition", list1_block5.condition)
+     .log( "recordingfile", list1_block5.recordingfile)
 );
 
 
