@@ -50,6 +50,18 @@ Sequence("intro_ID",
 	   randomize("fillers1"),
 	 "preload_list1_block1",
 	 randomize("list1_block1"),
+	  "preload_list1_block2",
+	 randomize("list1_block2"),
+	  "preload_list1_block3",
+	 randomize("list1_block3"),
+	 "pause",
+	 "untersuchung2",
+	 "preload_fillers2",
+	 randomize("fillers2"),
+	  "preload_list1_block4",
+	 randomize("list1_block4"),
+	  "preload_list1_block5",
+	 randomize("list1_block5"),
 	"uploads",
 	"comment",
 	"*sync_uploads*",
@@ -579,7 +591,6 @@ Template(GetTable("list1_block1.csv"),
     .log( "picture", list1_block1.picture)
      .log( "condition", list1_block1.condition)
      .log( "recordingfile", list1_block1.recordingfile)
-   
 );
 
 UploadRecordings("uploads");
