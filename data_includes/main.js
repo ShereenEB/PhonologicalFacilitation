@@ -9,12 +9,10 @@ var showProgressBar = true;
 let replaceConsentMic = ()=>{
         let consentLink = $(".PennController-PennController a.Message-continue-link");
         if (consentLink.length > 0 && consentLink[0].innerHTML.match(/^By clicking this link I understand that I grant this experiment's script access to my recording device/))
-            consentLink.html("Durch klicken erteile ich diesem Skript Zugriff auf mein Mikrofon.");
+            consentLink.html("Durch klicken erteile ich diesem Skript Zugriff auf mein Mikrofon");
         else
             window.requestAnimationFrame( replaceConsentMic );
 };
-
-window.requestAnimationFrame( replaceConsentMic );
 
 const replacePreloadingMessage = ()=>{
     const preloadingMessage = $(".PennController-PennController > div");
@@ -49,22 +47,6 @@ Sequence("intro_ID",
 	   randomize("fillers1"),
 	 "preload_list1_block1",
 	 randomize("list1_block1"),
-	 "uploads",
-	  	 "preload_list1_block2" ,
-	randomize ("list1_block2"),
-	"uploads",
-		"preload_list1_block3" ,
-	randomize ("list1_block3"),
-	"uploads",
-		 "pause",
-	 "untersuchung2",
-	  "preload_fillers2",
-	   randomize("fillers2"),
-		 "preload_list1_block4" ,
-	randomize ("list1_block4"),
-	"uploads",
-	 		 "preload_list1_block5" ,
-	randomize ("list1_block5"),
 	"uploads",
 	"comment",
 	"*sync_uploads*",
@@ -92,25 +74,6 @@ CheckPreloaded ( "familiarization" ,  5000 )
 	
 	CheckPreloaded ( "list1_block1" ,  10000 )
 	    . label ( "preload_list1_block1" ) ;
-	    
-	    CheckPreloaded ( "list1_block2" ,  10000 )
-	    . label ( "preload_list1_block2" ) ;
-	    
-	      CheckPreloaded ( "list1_block3" ,  10000 )
-	    . label ( "preload_list1_block3" ) ;
-	    
-	     CheckPreloaded ( "fillers2" ,  5000 )
-	    . label ( "preload_fillers2" ) ;
-	    
-	      CheckPreloaded ( "list1_block4" ,  10000 )
-	    . label ( "preload_list1_block4" ) ;
-	    
-	      CheckPreloaded ( "list1_block5" ,  10000 )
-	    . label ( "preload_list1_block5" ) ;
-	
-	
-
-
 
 //start the recorder and send result files to the server
 
@@ -384,38 +347,12 @@ Template(GetTable("audio_check.csv"),
 	     .center()
 	     .css("background", "white")
         ,
-        newText("line2", ac.line2)
-        .center()
-        ,
-        newText("line3", ac.line3)
-        .center()
-        ,
-        newText("line4", ac.line4)
-        .center()
-	     .css("background", "white")
-        ,
-        newText("line5", ac.line5)
-        .center()
-	     .css("background", "white")
-        ,
-        newText("line6", ac.line6)
-        .center()
-	     .css("background", "white")
-	,
-        newText("line7", ac.line7)
-        .center()
- 	     .css("background", "white")
-	,
-        newText("line8", ac.line8)
-        .center()
-            .css("border", "solid 2px white")
-            ,
         newMediaRecorder("ac_recorder", "audio")
             .center()
             .print()
 	    .css( "border" , "solid 3px red" )
         ,
-        newButton("ac_test_button", "Fortfahren")
+        newButton("ac_test_button", "Continue")
             .center()
             .size(100, 30)
             .css("border", "solid 5px white")
@@ -423,7 +360,6 @@ Template(GetTable("audio_check.csv"),
             .wait(getMediaRecorder("ac_recorder").test.recorded())
     )
 );
-
 
 Template(GetTable("familiarization.csv"),
     fam =>
@@ -515,9 +451,8 @@ Template ( GetTable ( "prac_block.csv" ) ,
 	        . wait ( )
 	        . log ( )
 	    )
-    .log( "Participant ID" , prac_block.sub_id )
-    .log( "Target" , prac_block.target )
-    .log( "Distractor" , prac_block.distractor )
+    .log( "Session" , prac_block.session )
+    .log( "Picture" , prac_block.picture )
     .log( "Condition" , prac_block.condition )
     // Add these columns to the results lines of these Template-based trials
 
@@ -602,7 +537,7 @@ Template(GetTable("list1_block1.csv"),
      .center()
         .remove()
     ,
-    newMediaRecorder("list1_block1_recorder", "audio")
+    newMediaRecorder(GetURLParameter("id")+"_list1_block1", "audio")
         .hidden()
         .record()
         .log()
@@ -626,20 +561,25 @@ Template(GetTable("list1_block1.csv"),
         .wait()
         .log()
     ,
-    getMediaRecorder("list1_block1_recorder")
+    getMediaRecorder(GetURLParameter("id")+"_list1_block1")
         .stop()
         .remove()
 	.log()    
     )
-    .log( "sub_id"     , list1_block1.sub_id)
-    .log( "session" , list1_block1.session)
+    
+    .log( "list"     , list1_block1.list)
+     .log( "block"     , list1_block1.block)
+         .log( "item" , list1_block1.item)
     .log( "target", list1_block1.target )
     .log( "distractor", list1_block1.distractor)
-    .log( "condition", list1_block1.condition)
     .log( "picture", list1_block1.picture)
+     .log( "condition", list1_block1.condition)
+      .log( "recordingfile", list1_block1.recordingfile)
+   
 );
 
 UploadRecordings("uploads");
+
 
 Template(GetTable("list1_block2.csv"),
    list1_block2 =>
@@ -659,7 +599,7 @@ Template(GetTable("list1_block2.csv"),
      .center()
         .remove()
     ,
-    newMediaRecorder("list1_block2_recorder", "audio")
+        newMediaRecorder(GetURLParameter("id")+[list1_block2.picture,list1_block2.condition].join('_'), "audio")
         .hidden()
         .record()
         .log()
@@ -683,18 +623,21 @@ Template(GetTable("list1_block2.csv"),
         .wait()
         .log()
     ,
-    getMediaRecorder("list1_block2_recorder")
+    getMediaRecorder(GetURLParameter("id")+[list1_block2.picture,list1_block2.condition])
         .stop()
         .remove()
 	.log()    
     )
-    .log( "sub_id"     , list1_block2.sub_id)
-    .log( "session" , list1_block2.session)
+    
+    .log( "group"     , list1_block2.list)
+     .log( "group"     , list1_block2.block)
+         .log( "item" , list1_block2.item)
     .log( "target", list1_block2.target )
     .log( "distractor", list1_block2.distractor)
-    .log( "condition", list1_block2.condition)
     .log( "picture", list1_block2.picture)
+     .log( "condition", list1_block2.condition)
 );
+
 
 Template(GetTable("list1_block3.csv"),
    list1_block3 =>
@@ -714,7 +657,7 @@ Template(GetTable("list1_block3.csv"),
      .center()
         .remove()
     ,
-    newMediaRecorder("list1_block3_recorder", "audio")
+    newMediaRecorder(GetURLParameter("id")+[list1_block3.picture,list1_block3.condition].join('_'), "audio")
         .hidden()
         .record()
         .log()
@@ -737,20 +680,22 @@ Template(GetTable("list1_block3.csv"),
         .start()
         .wait()
         .log()
-    ,
-    getMediaRecorder("list1_block3_recorder")
+
+   ,
+     getMediaRecorder(GetURLParameter("id")+[list1_block3.picture,list1_block3.condition])
         .stop()
         .remove()
 	.log()    
     )
-    .log( "sub_id"     , list1_block3.sub_id)
-    .log( "session" , list1_block3.session)
+    
+    .log( "group"     , list1_block3.list)
+     .log( "group"     , list1_block3.block)
+         .log( "item" , list1_block3.item)
     .log( "target", list1_block3.target )
     .log( "distractor", list1_block3.distractor)
-    .log( "condition", list1_block3.condition)
     .log( "picture", list1_block3.picture)
+     .log( "condition", list1_block3.condition)
 );
-
 
 Template(GetTable("pause.csv"),
     pause =>
@@ -849,7 +794,7 @@ Template(GetTable("list1_block4.csv"),
      .center()
         .remove()
     ,
-    newMediaRecorder("list1_block4_recorder", "audio")
+      newMediaRecorder(GetURLParameter("id")+[list1_block4.picture,list1_block4.condition].join('_'), "audio")
         .hidden()
         .record()
         .log()
@@ -873,18 +818,22 @@ Template(GetTable("list1_block4.csv"),
         .wait()
         .log()
     ,
-    getMediaRecorder("list1_block4_recorder")
+       
+     getMediaRecorder(GetURLParameter("id")+[list1_block4.picture,list1_block4.condition])
         .stop()
         .remove()
 	.log()    
     )
-    .log( "sub_id"     , list1_block4.sub_id)
-    .log( "session" , list1_block4.session)
+    
+    .log( "group"     , list1_block4.list)
+     .log( "group"     , list1_block4.block)
+         .log( "item" , list1_block4.item)
     .log( "target", list1_block4.target )
     .log( "distractor", list1_block4.distractor)
-    .log( "condition", list1_block4.condition)
     .log( "picture", list1_block4.picture)
+     .log( "condition", list1_block4.condition)
 );
+
 
 
 
@@ -906,7 +855,7 @@ Template(GetTable("list1_block5.csv"),
      .center()
         .remove()
     ,
-    newMediaRecorder("list1_block5_recorder", "audio")
+    newMediaRecorder(GetURLParameter("id")+[list1_block4.picture,list1_block4.condition].join('_'), "audio")
         .hidden()
         .record()
         .log()
@@ -929,18 +878,20 @@ Template(GetTable("list1_block5.csv"),
         .start()
         .wait()
         .log()
-    ,
-    getMediaRecorder("list1_block5_recorder")
+       ,
+     getMediaRecorder(GetURLParameter("id")+[list1_block5.picture,list1_block5.condition])
         .stop()
         .remove()
 	.log()    
     )
-    .log( "sub_id"     , list1_block5.sub_id)
-    .log( "session" , list1_block5.session)
+    
+    .log( "group"     , list1_block5.list)
+     .log( "group"     , list1_block5.block)
+         .log( "item" , list1_block5.item)
     .log( "target", list1_block5.target )
     .log( "distractor", list1_block5.distractor)
-    .log( "condition", list1_block5.condition)
     .log( "picture", list1_block5.picture)
+     .log( "condition", list1_block5.condition)
 );
 
 
