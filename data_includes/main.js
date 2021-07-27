@@ -50,16 +50,20 @@ Sequence("intro_ID",
 	   randomize("fillers1"),
 	 "preload_list1_block1",
 	 randomize("list1_block1"),
+	 	"uploads",
 	  "preload_list1_block2",
 	 randomize("list1_block2"),
+	 	"uploads",
 	  "preload_list1_block3",
 	 randomize("list1_block3"),
+	 	"uploads",
 	 "pause",
 	 "untersuchung2",
 	 "preload_fillers2",
 	 randomize("fillers2"),
 	  "preload_list1_block4",
 	 randomize("list1_block4"),
+	 	"uploads",
 	  "preload_list1_block5",
 	 randomize("list1_block5"),
 	"uploads",
@@ -89,6 +93,19 @@ CheckPreloaded ( "familiarization" ,  5000 )
 	
 	CheckPreloaded ( "list1_block1" ,  10000 )
 	    . label ( "preload_list1_block1" ) ;
+
+CheckPreloaded ( "list1_block2" ,  10000 )
+	    . label ( "preload_list1_block2" ) ;
+
+CheckPreloaded ( "list1_block3" ,  10000 )
+	    . label ( "preload_list1_block3" ) ;
+
+CheckPreloaded ( "list1_block4" ,  10000 )
+	    . label ( "preload_list1_block4" ) ;
+
+CheckPreloaded ( "list1_block5" ,  10000 )
+	    . label ( "preload_list1_block5" ) ;
+
 
 //start the recorder and send result files to the server
 
@@ -537,7 +554,7 @@ Template ( GetTable ( "fillers1.csv" ) ,
 
 Template(GetTable("list1_block1.csv"),
    list1_block1 =>
-    newTrial("list1_block2",
+    newTrial("list1_block1",
     
     newImage("fixation_cross", "fixation.jpg")
         .size(1280, 720)
@@ -572,7 +589,7 @@ Template(GetTable("list1_block1.csv"),
      .center()
         .remove()
     ,
-    newTimer("list1_block2_posttrial", 1500)
+    newTimer("list1_block1_posttrial", 1500)
         .start()
         .wait()
         .log()
